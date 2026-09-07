@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Andes to Amazon placeholder</title>
+  <desc id="desc">Abstract route from Andean mountains into dense rainforest.</desc>
+  <rect width="1600" height="1000" fill="#eef0e6"/>
+  <path d="M0 558L154 397L281 505L430 322L609 535L775 355L967 552L1110 430L1264 542L1417 391L1600 566V1000H0Z" fill="#2f628f"/>
+  <path d="M0 646C180 552 345 532 488 590C661 660 792 690 958 621C1168 533 1359 560 1600 661V1000H0Z" fill="#1f5f4a"/>
+  <path d="M0 758C144 716 256 716 372 760C487 802 574 822 688 759C838 676 1012 685 1166 755C1308 819 1440 832 1600 775V1000H0Z" fill="#17382f"/>
+  <path d="M105 859C190 782 258 744 331 744C404 744 457 800 532 780C630 754 679 697 766 715C860 733 901 805 990 789C1096 770 1166 708 1264 736C1370 767 1457 836 1600 807V1000H0V899C36 890 70 877 105 859Z" fill="#3f7d5a"/>
+  <circle cx="1328" cy="181" r="74" fill="#f2c16b"/>
+  <path d="M1194 803C1206 689 1238 603 1290 535C1347 616 1370 701 1359 803Z" fill="#b35b3b"/>
+  <path d="M1290 535C1227 558 1177 598 1139 655C1206 643 1258 605 1290 535Z" fill="#1f3d35"/>
+  <path d="M1290 535C1363 558 1421 602 1457 665C1382 650 1325 609 1290 535Z" fill="#1f3d35"/>
+  <text x="110" y="188" fill="#17382f" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Andes to Amazon</text>
+</svg>

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Caribbean and Coffee placeholder</title>
+  <desc id="desc">Abstract Caribbean water, coffee hills, palms, and sunlit coast.</desc>
+  <rect width="1600" height="1000" fill="#f7efe1"/>
+  <circle cx="1248" cy="194" r="92" fill="#f2c16b"/>
+  <path d="M0 523C188 459 338 443 501 501C642 551 774 553 922 484C1065 417 1238 395 1600 501V1000H0Z" fill="#87b8b0"/>
+  <path d="M0 652C165 589 329 583 497 633C700 693 886 691 1051 624C1235 549 1410 561 1600 621V1000H0Z" fill="#1f5f4a"/>
+  <path d="M0 720C181 693 353 706 516 759C708 845 929 824 1108 748C1277 676 1445 678 1600 724V1000H0Z" fill="#2f628f"/>
+  <path d="M0 815C244 783 432 794 637 842C841 889 1048 884 1258 831C1392 797 1506 794 1600 812V1000H0Z" fill="#fbfaf7"/>
+  <path d="M270 766C278 662 305 585 355 522C406 594 426 672 418 766Z" fill="#17382f"/>
+  <path d="M355 522C298 542 251 578 214 630C276 620 324 586 355 522Z" fill="#1f3d35"/>
+  <path d="M355 522C421 541 472 581 505 637C438 627 386 590 355 522Z" fill="#1f3d35"/>
+  <path d="M1010 733H1198V591H1010Z" fill="#b35b3b"/>
+  <path d="M1047 733H1161V625H1047Z" fill="#fbfaf7"/>
+  <text x="110" y="188" fill="#17382f" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Caribbean and Coffee</text>
+</svg>

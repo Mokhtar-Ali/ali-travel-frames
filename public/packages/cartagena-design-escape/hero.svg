@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">Cartagena Design Escape placeholder</title>
+  <desc id="desc">Abstract Cartagena facade beside Caribbean water.</desc>
+  <rect width="1600" height="1000" fill="#fbfaf7"/>
+  <rect x="0" y="0" width="1600" height="438" fill="#f2eadc"/>
+  <circle cx="1285" cy="170" r="82" fill="#f2c16b"/>
+  <path d="M0 676C178 636 356 642 534 692C744 750 930 746 1120 682C1300 621 1459 630 1600 675V1000H0Z" fill="#2f628f"/>
+  <path d="M0 789C236 743 421 760 621 820C811 876 1024 865 1215 806C1361 760 1485 754 1600 784V1000H0Z" fill="#87b8b0"/>
+  <path d="M199 690H742V344H199Z" fill="#b35b3b"/>
+  <path d="M245 690H351V487H245Z" fill="#fbfaf7"/>
+  <path d="M414 690H520V487H414Z" fill="#fbfaf7"/>
+  <path d="M582 690H688V487H582Z" fill="#fbfaf7"/>
+  <path d="M244 432H350V387H244Z" fill="#17382f"/>
+  <path d="M414 432H520V387H414Z" fill="#17382f"/>
+  <path d="M582 432H688V387H582Z" fill="#17382f"/>
+  <path d="M199 344L471 221L742 344Z" fill="#1f5f4a"/>
+  <path d="M990 748C999 650 1025 573 1075 510C1126 584 1147 660 1138 748Z" fill="#17382f"/>
+  <path d="M1075 510C1017 531 969 568 932 620C994 611 1043 576 1075 510Z" fill="#1f3d35"/>
+  <path d="M1075 510C1142 531 1194 570 1226 628C1158 617 1108 580 1075 510Z" fill="#1f3d35"/>
+  <text x="110" y="162" fill="#17382f" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700">Cartagena Design Escape</text>
+</svg>
