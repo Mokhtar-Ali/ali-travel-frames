@@ -9,6 +9,7 @@ import {
   type Package,
 } from "@/content/packages";
 import { formatUsd } from "@/lib/format";
+import { publicAssetExists } from "@/lib/public-assets";
 import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 type PackagePageProps = {
@@ -82,6 +83,8 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
     notFound();
   }
 
+  const hasHeroImage = publicAssetExists(travelPackage.heroImage);
+  const heroTextColor = hasHeroImage ? "text-surface" : "text-ink";
   const touristTripJsonLd = buildTouristTripJsonLd(travelPackage);
 
   return (
@@ -91,19 +94,25 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
         data={touristTripJsonLd}
       />
       <article>
-        <section className="relative isolate min-h-[620px] overflow-hidden bg-[#17382f] text-white">
-          <Image
-            src={travelPackage.heroImage}
-            alt={`${travelPackage.name} trip scene`}
-            width={1600}
-            height={1000}
-            sizes="100vw"
-            priority
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 -z-10 bg-[#17382f]/65" />
-          <div className="mx-auto flex min-h-[620px] max-w-7xl flex-col justify-end px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-            <p className="font-heading text-sm font-bold uppercase text-[#f2c16b]">
+        <section
+          className={`relative isolate min-h-[620px] overflow-hidden bg-paper ${heroTextColor}`}
+        >
+          {hasHeroImage ? (
+            <Image
+              src={travelPackage.heroImage}
+              alt={`${travelPackage.name} trip scene`}
+              width={1600}
+              height={1000}
+              sizes="100vw"
+              priority
+              className="absolute inset-0 -z-20 h-full w-full object-cover"
+            />
+          ) : null}
+          {hasHeroImage ? (
+            <div className="hero-image-overlay absolute inset-0 -z-10" />
+          ) : null}
+          <div className="site-gutter flex min-h-[620px] flex-col justify-start py-16 sm:py-20 lg:py-24">
+            <p className="font-heading text-sm font-bold uppercase text-gold">
               {travelPackage.nights} nights
             </p>
             <h1 className="mt-4 max-w-4xl font-heading text-5xl font-bold leading-[1.02] sm:text-7xl">
@@ -112,19 +121,19 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
             <p className="mt-5 font-heading text-2xl font-bold">
               From {formatUsd(travelPackage.priceFrom)} per person
             </p>
-            <p className="mt-5 max-w-2xl text-xl leading-8 text-stone-100">
+            <p className="mt-5 max-w-2xl text-xl leading-8">
               {travelPackage.summary}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/plan"
-                className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#f2c16b] px-5 py-3 font-heading text-sm font-bold text-[#17382f] transition hover:bg-white"
+                className="btn-primary"
               >
                 Book a free 15-minute call
               </Link>
               <Link
                 href={`/plan?package=${travelPackage.slug}`}
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/70 px-5 py-3 font-heading text-sm font-bold text-white transition hover:bg-white hover:text-[#17382f]"
+                className="btn-secondary"
               >
                 Customise this trip
               </Link>
@@ -132,24 +141,24 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <section className="site-gutter py-14">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <p className="font-heading text-sm font-bold uppercase text-[#b35b3b]">
+            <p className="font-heading text-sm font-bold uppercase text-gold">
               Summary
             </p>
-            <p className="text-2xl leading-10 text-stone-800">
+            <p className="text-2xl leading-10 text-ink">
               {travelPackage.summary}
             </p>
           </div>
         </section>
 
-        <section className="border-y border-stone-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <section className="border-y border-hair bg-surface">
+          <div className="site-gutter py-14">
             <div className="max-w-3xl">
-              <p className="font-heading text-sm font-bold uppercase text-[#2f628f]">
+              <p className="font-heading text-sm font-bold uppercase text-gold">
                 Day by day
               </p>
-              <h2 className="mt-2 font-heading text-4xl font-bold text-[#1f3d35]">
+              <h2 className="mt-2 font-heading text-4xl font-bold text-ink">
                 Itinerary
               </h2>
             </div>
@@ -157,16 +166,16 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
               {travelPackage.itinerary.map((day) => (
                 <li
                   key={day.day}
-                  className="grid gap-4 rounded-lg border border-stone-200 bg-[#fbfaf7] p-5 sm:grid-cols-[6rem_1fr]"
+                  className="grid gap-4 rounded-lg border border-hair bg-paper p-5 sm:grid-cols-[6rem_1fr]"
                 >
-                  <div className="font-heading text-sm font-bold uppercase text-[#b35b3b]">
+                  <div className="font-heading text-sm font-bold uppercase text-gold">
                     Day {day.day}
                   </div>
                   <div>
-                    <h3 className="font-heading text-2xl font-bold text-[#1f3d35]">
+                    <h3 className="font-heading text-2xl font-bold text-ink">
                       {day.title}
                     </h3>
-                    <p className="mt-3 text-base leading-7 text-stone-700">
+                    <p className="mt-3 text-base leading-7 text-ink">
                       {day.body}
                     </p>
                   </div>
@@ -176,29 +185,29 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <section className="site-gutter py-14">
           <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-lg border border-stone-200 bg-white p-6">
-              <h2 className="font-heading text-3xl font-bold text-[#1f3d35]">
+            <div className="rounded-lg border border-hair bg-surface p-6">
+              <h2 className="font-heading text-3xl font-bold text-ink">
                 What&apos;s included
               </h2>
-              <ul className="mt-6 grid gap-3 text-base leading-7 text-stone-700">
+              <ul className="mt-6 grid gap-3 text-base leading-7 text-ink">
                 {travelPackage.included.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#1f5f4a]" />
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-purple" />
                     <span>{item}</span>
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="rounded-lg border border-stone-200 bg-white p-6">
-              <h2 className="font-heading text-3xl font-bold text-[#1f3d35]">
+            <div className="rounded-lg border border-hair bg-surface p-6">
+              <h2 className="font-heading text-3xl font-bold text-ink">
                 Not included
               </h2>
-              <ul className="mt-6 grid gap-3 text-base leading-7 text-stone-700">
+              <ul className="mt-6 grid gap-3 text-base leading-7 text-ink">
                 {travelPackage.excluded.map((item) => (
                   <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#b35b3b]" />
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-gold" />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -207,70 +216,70 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
           </div>
         </section>
 
-        <section className="border-y border-stone-200 bg-[#f2eadc]">
-          <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <section className="border-y border-hair bg-gold-soft">
+          <div className="site-gutter py-14">
             <div className="max-w-3xl">
-              <p className="font-heading text-sm font-bold uppercase text-[#b35b3b]">
+              <p className="font-heading text-sm font-bold uppercase text-gold">
                 Hotels
               </p>
-              <h2 className="mt-2 font-heading text-4xl font-bold text-[#1f3d35]">
+              <h2 className="mt-2 font-heading text-4xl font-bold text-ink">
                 Named hotel shortlist
               </h2>
             </div>
             <div className="mt-8 grid gap-5 md:grid-cols-2">
               {travelPackage.hotels.map((hotel) => (
-                <section
+                <article
                   key={`${hotel.city}-${hotel.name}`}
-                  className="rounded-lg border border-stone-200 bg-white p-5"
+                  className="rounded-lg border border-hair bg-surface p-5"
                 >
-                  <p className="font-heading text-sm font-bold uppercase text-[#2f628f]">
+                  <p className="font-heading text-sm font-bold uppercase text-gold">
                     {hotel.city}
                   </p>
-                  <h3 className="mt-2 font-heading text-2xl font-bold text-[#1f3d35]">
+                  <h3 className="mt-2 font-heading text-2xl font-bold text-ink">
                     {hotel.name}
                   </h3>
-                  <p className="mt-3 text-base leading-7 text-stone-700">
+                  <p className="mt-3 text-base leading-7 text-ink">
                     {hotel.why}
                   </p>
-                </section>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="rounded-lg border-l-4 border-[#b35b3b] bg-white p-6 shadow-sm">
-            <h2 className="font-heading text-2xl font-bold text-[#1f3d35]">
+        <section className="site-gutter py-12">
+          <div className="rounded-lg border-l-4 border-gold bg-surface p-6">
+            <h2 className="font-heading text-2xl font-bold text-ink">
               Important caveat
             </h2>
-            <p className="mt-3 text-lg leading-8 text-stone-700">
+            <p className="mt-3 text-lg leading-8 text-ink">
               {travelPackage.caveat}
             </p>
           </div>
         </section>
 
-        <section className="bg-[#17382f]">
-          <div className="mx-auto max-w-7xl px-4 py-14 text-white sm:px-6 lg:px-8">
-            <p className="font-heading text-sm font-bold uppercase text-[#f2c16b]">
+        <section className="bg-surface text-ink">
+          <div className="site-gutter py-14">
+            <p className="font-heading text-sm font-bold uppercase text-gold">
               Ready to shape it around you?
             </p>
             <h2 className="mt-3 max-w-3xl font-heading text-4xl font-bold">
               Turn {travelPackage.name} into your private Colombia plan
             </h2>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-stone-100">
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-ink">
               We will tune pace, hotels, guiding style, and add-on moments
               before anything is confirmed.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
                 href={`/plan?package=${travelPackage.slug}`}
-                className="inline-flex min-h-12 items-center justify-center rounded-md bg-[#f2c16b] px-5 py-3 font-heading text-sm font-bold text-[#17382f] transition hover:bg-white"
+                className="btn-primary"
               >
                 Customise this trip
               </Link>
               <Link
                 href="/packages"
-                className="inline-flex min-h-12 items-center justify-center rounded-md border border-white/70 px-5 py-3 font-heading text-sm font-bold text-white transition hover:bg-white hover:text-[#17382f]"
+                className="btn-secondary"
               >
                 Compare packages
               </Link>

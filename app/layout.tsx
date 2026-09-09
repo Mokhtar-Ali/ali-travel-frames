@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Source_Serif_4 } from "next/font/google";
 import { JsonLd } from "@/components/json-ld";
 import { SiteFooter } from "@/components/site-footer";
@@ -30,6 +30,10 @@ export const metadata: Metadata = buildMetadata({
   path: "/",
   titleTemplate: true,
 });
+
+export const viewport: Viewport = {
+  colorScheme: "light",
+};
 
 const travelAgencyJsonLd = {
   "@context": "https://schema.org",

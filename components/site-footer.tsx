@@ -18,47 +18,44 @@ const socials = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-stone-200 bg-[#17382f] text-white">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-[1.1fr_1fr_1fr] lg:px-8">
+    <footer className="site-footer border-t border-hair">
+      <div className="site-gutter grid gap-10 py-12 lg:grid-cols-[1.1fr_1fr_1fr]">
         <div>
-          <Link href="/" className="font-heading text-2xl font-bold">
+          <Link href="/" className="footer-link font-heading text-2xl font-bold">
             {SITE_NAME}
           </Link>
-          <p className="mt-4 max-w-sm text-base leading-7 text-stone-200">
+          <p className="mt-4 max-w-sm text-base leading-7">
             Private Colombia travel planning with boutique hotels, trusted
             guides, and thoughtful pacing.
           </p>
-          <p className="mt-5 text-sm font-semibold text-stone-100">
+          <p className="mt-5 text-sm font-semibold">
             US phone: {SITE_PHONE_PLACEHOLDER}
           </p>
+          <Link href="/plan" className="btn-primary mt-6">
+            Book a free call
+          </Link>
         </div>
         <nav className="grid grid-cols-2 gap-3 text-sm" aria-label="Footer">
           {footerNavItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-stone-200 transition hover:text-white"
-            >
+            <Link key={item.href} href={item.href} className="footer-link">
               {item.label}
             </Link>
           ))}
         </nav>
         <div>
-          <p className="font-heading text-sm font-bold uppercase text-[#f2c16b]">
-            Socials
-          </p>
-          <div className="mt-4 flex flex-wrap gap-3">
+          <p className="font-heading text-sm font-bold uppercase">Socials</p>
+          <div className="mt-4 grid gap-3 text-sm">
             {socials.map((social) => (
               <Link
                 key={social.label}
                 href={social.href}
-                className="rounded-md border border-white/20 px-3 py-2 text-sm font-semibold text-stone-100 transition hover:border-white hover:text-white"
+                className="footer-link w-fit font-semibold"
               >
                 {social.label}
               </Link>
             ))}
           </div>
-          <p className="mt-8 text-sm text-stone-300">
+          <p className="mt-8 text-sm">
             Copyright 2026 {SITE_NAME}. All rights reserved.
           </p>
         </div>

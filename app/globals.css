@@ -1,13 +1,29 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fbfaf7;
-  --foreground: #25211d;
+  --paper: #FBFAF7;
+  --surface: #FFFFFF;
+  --ink: #2E1F3D;
+  --ink-2: #574570;
+  --muted: #8A7F97;
+  --hair: #E8E3EE;
+  --purple: #4A2D6B;
+  --gold: #B8891F;
+  --gold-hover: #966E14;
+  --gold-soft: #F7EDD6;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-hair: var(--hair);
+  --color-purple: var(--purple);
+  --color-gold: var(--gold);
+  --color-gold-hover: var(--gold-hover);
+  --color-gold-soft: var(--gold-soft);
   --font-heading: var(--font-bricolage);
   --font-body: var(--font-source-serif);
   --font-sans: var(--font-bricolage);
@@ -15,8 +31,8 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-source-serif), Georgia, serif;
 }
 
@@ -27,4 +43,121 @@ h4,
 h5,
 h6 {
   font-family: var(--font-bricolage), Arial, Helvetica, sans-serif;
+}
+
+.site-gutter {
+  padding-inline: max(20px, 10%);
+}
+
+.site-header-inner {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  padding-inline: max(20px, 10%);
+}
+
+.site-header-nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-self: center;
+  white-space: nowrap;
+}
+
+.site-nav-link {
+  color: var(--ink-2);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition:
+    color 160ms ease,
+    text-decoration-color 160ms ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link-active {
+  color: var(--ink);
+  text-decoration-color: var(--gold);
+}
+
+.hero-image-overlay {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ink) 55%, transparent),
+    color-mix(in srgb, var(--ink) 15%, transparent)
+  );
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 0.75rem 1.25rem;
+  font-family: var(--font-bricolage), Arial, Helvetica, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-decoration-line: none;
+  box-shadow: none;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.btn-primary {
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: var(--surface);
+}
+
+.btn-primary:hover {
+  border-color: var(--gold-hover);
+  background: var(--gold-hover);
+}
+
+.btn-primary:active {
+  border-color: var(--gold-hover);
+  background: var(--gold-hover);
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  border: 1px solid var(--hair);
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold);
+  background: var(--gold-soft);
+}
+
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.site-footer {
+  background: var(--purple);
+  color: color-mix(in srgb, var(--surface) 88%, transparent);
+}
+
+.footer-link {
+  color: var(--surface);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 160ms ease;
+}
+
+.footer-link:hover {
+  text-decoration-color: var(--gold);
 }

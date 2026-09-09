@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "Colombia", href: "/colombia" },
@@ -10,37 +13,51 @@ const navItems = [
 ];
 
 export function SiteHeader() {
+  const pathname = usePathname();
+
   return (
-    <header className="sticky top-0 z-30 border-b border-stone-200 bg-[#fbfaf7]/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-4 px-4 py-4 sm:px-6 lg:flex-nowrap lg:px-8">
+    <header className="sticky top-0 z-30 w-full border-b border-hair bg-surface">
+      <div className="site-header-inner py-4">
         <Link
           href="/"
-          className="font-heading text-xl font-bold text-[#1f3d35]"
+          className="justify-self-start font-heading text-xl font-bold text-ink"
           aria-label="Ali Travel Frames home"
         >
           Ali Travel Frames
         </Link>
         <nav
-          className="order-3 flex w-full gap-5 overflow-x-auto border-t border-stone-200 pt-3 text-sm font-semibold text-stone-700 lg:order-none lg:ml-8 lg:w-auto lg:flex-1 lg:border-0 lg:pt-0"
+          className="site-header-nav text-sm font-semibold"
           aria-label="Primary navigation"
         >
           {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="shrink-0 transition hover:text-[#b35b3b]"
-            >
-              {item.label}
-            </Link>
+            <HeaderNavLink key={item.href} item={item} pathname={pathname} />
           ))}
         </nav>
-        <Link
-          href="/plan"
-          className="ml-auto inline-flex min-h-11 items-center justify-center rounded-md bg-[#1f5f4a] px-4 py-2 font-heading text-sm font-bold text-white shadow-sm transition hover:bg-[#174737]"
-        >
+        <Link href="/plan" className="btn-primary justify-self-end">
           Book a free call
         </Link>
       </div>
     </header>
+  );
+}
+
+function HeaderNavLink({
+  item,
+  pathname,
+}: {
+  item: (typeof navItems)[number];
+  pathname: string;
+}) {
+  const isActive =
+    pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+  return (
+    <Link
+      href={item.href}
+      className={`site-nav-link ${isActive ? "site-nav-link-active" : ""}`}
+      aria-current={isActive ? "page" : undefined}
+    >
+      {item.label}
+    </Link>
   );
 }

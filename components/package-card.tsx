@@ -13,10 +13,10 @@ export function PackageCard({
   priority = false,
 }: PackageCardProps) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-stone-200 bg-white shadow-sm">
+    <article className="group flex h-full flex-col overflow-hidden rounded-lg border border-hair bg-surface">
       <Link
         href={`/packages/${travelPackage.slug}`}
-        className="block overflow-hidden bg-stone-100"
+        className="block overflow-hidden bg-gold-soft"
         aria-label={`View ${travelPackage.name}`}
       >
         <Image
@@ -31,30 +31,30 @@ export function PackageCard({
       </Link>
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div>
-          <p className="font-heading text-sm font-bold uppercase text-[#b35b3b]">
+          <p className="font-heading text-sm font-bold uppercase text-gold">
             {travelPackage.nights} nights
           </p>
-          <h3 className="mt-2 font-heading text-2xl font-bold text-[#1f3d35]">
+          <h3 className="mt-2 font-heading text-2xl font-bold text-ink">
             <Link
               href={`/packages/${travelPackage.slug}`}
-              className="transition hover:text-[#b35b3b]"
+              className="transition hover:text-ink-2"
             >
               {travelPackage.name}
             </Link>
           </h3>
-          <p className="mt-2 text-sm font-semibold text-stone-600">
+          <p className="mt-2 text-sm font-semibold text-ink-2">
             {travelPackage.cities.join(", ")}
           </p>
         </div>
-        <p className="font-heading text-lg font-bold text-stone-950">
+        <p className="font-heading text-lg font-bold text-ink">
           From {formatUsd(travelPackage.priceFrom)} per person
         </p>
-        <p className="text-base leading-7 text-stone-700">
+        <p className="text-base leading-7 text-ink">
           {travelPackage.summary}
         </p>
         <Link
           href={`/packages/${travelPackage.slug}`}
-          className="mt-auto inline-flex w-fit items-center rounded-md border border-[#1f5f4a] px-4 py-2 font-heading text-sm font-bold text-[#1f5f4a] transition hover:bg-[#1f5f4a] hover:text-white"
+          className="btn-secondary mt-auto w-fit"
         >
           View package
         </Link>
