@@ -1,0 +1,46 @@
+import type { Package } from '../types'
+
+export const medellinGuatape: Package = {
+  slug: "medellin-guatape",
+  name: "Medellín & Guatapé",
+  title: "Medellín & Guatapé: 5 Nights of City, Culture & Lake Country",
+  metaDescription: "Five nights in Medellín and Guatapé with a private guide — Comuna 13, a working coffee farm, the Guatapé rock and lake country. From $3,200 per person.",
+  nights: 5,
+  days: 6,
+  priceFrom: 3200,
+  cities: ["Medellín", "Guatapé"],
+  featured: true,
+  heroImage: "/packages/medellin-guatape/hero.jpg",
+  gallery: [],
+  summary: "The best introduction to Colombia for a first trip. Medellín is the easiest city in the country to land in — mild weather all year, a metro that works, and neighbourhoods you can walk. You get the city properly with a private guide, then two nights out at Guatapé where the lake country looks like nowhere else in South America.",
+  itinerary: [
+    { day: 1, title: "Arrival in Medellín — the city at night", body: "Private transfer from José María Córdova airport, about 45 minutes down into the valley. In the evening, the 360 miradores run: Medellín from every side after dark, when the whole valley lights up and you finally understand the shape of the place. It is the right first night — nothing strenuous, no early start, and it makes sense of everything you see over the following days. Landing late? We move it to another evening." },
+    { day: 2, title: "Comuna 13 and the city, properly", body: "A private guide takes you through Comuna 13 — the escalators, the murals, and the actual history rather than the version sold on the corner. Afternoon at Pueblito Paisa and the city viewpoints for the geography, which is what makes Medellín make sense." },
+    { day: 3, title: "Coffee farm and the mountains", body: "Out of the city to a working coffee farm — picking, processing, roasting, and drinking it where it was grown. Afternoon free, or add horseback riding or paragliding over the valley if you want the adrenaline version." },
+    { day: 4, title: "Guatapé and the rock", body: "Private transfer to Guatapé, about two hours. El Peñol — 740 steps, and worth every one. Afternoon on the lake, then the town itself in the evening when the day-trippers have gone and the zócalos are lit." },
+    { day: 5, title: "Lake day", body: "A full free day at the lake. Boat out to the islands, or nothing at all. This is the day people tell me afterwards was their favourite, and it's the one with the least planned." },
+    { day: 6, title: "Departure", body: "Private transfer back to Medellín airport, roughly two hours from Guatapé. Late flights are easy; early ones mean a very early start, so tell me your flight before we book." },
+  ],
+  included: [
+    "5 nights accommodation in vetted hotels",
+    "All private ground transfers, including both airport runs",
+    "Evening 360 miradores city-lights tour on arrival night",
+    "Private guide for Comuna 13 and the Medellín city day",
+    "Coffee farm experience with tasting",
+    "Guatapé day with El Peñol entry and lake boat",
+    "24/7 phone access to me while you are in Colombia",
+    "Restaurant bookings and recommendations for every free evening",
+  ],
+  excluded: [
+    "International flights",
+    "Travel insurance",
+    "Meals not listed",
+    "Optional add-ons (paragliding, horseback riding, ATV)",
+  ],
+  hotels: [
+    { name: "Celestino Boutique Hotel & Spa", city: "Medellín", why: "Small, quiet, and in Provenza without being on the loudest block of it. Walkable to everything you actually want." },
+    { name: "Masaya Medellín", city: "Medellín", why: "The alternative if you want a more social, design-led place with a rooftop. Good for younger travellers or a first trip." },
+    { name: "Hotel & Spa Guatapé", city: "Guatapé", why: "Lake views, a pool, and far enough from the town square that the weekend noise doesn't reach you." },
+  ],
+  caveat: "Guatapé is very busy at weekends and on Colombian public holidays — buses of day-trippers from Medellín. If your dates land on a weekend I'll build the rock climb for early morning, which fixes it. Tell me your dates before anything is booked.",
+}

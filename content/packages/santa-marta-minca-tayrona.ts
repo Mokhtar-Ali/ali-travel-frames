@@ -1,0 +1,46 @@
+import type { Package } from '../types'
+
+export const santaMartaMincaTayrona: Package = {
+  slug: "santa-marta-minca-tayrona",
+  name: "Santa Marta, Minca & Tayrona",
+  title: "Santa Marta, Minca & Tayrona: Mountains, Jungle & Caribbean Coast",
+  metaDescription: "Six nights across Santa Marta, the Minca cloud forest and Tayrona National Park — beaches, waterfalls, coffee in the mountains. From $3,700 per person.",
+  nights: 6,
+  days: 7,
+  priceFrom: 3700,
+  cities: ["Santa Marta", "Minca", "Tayrona"],
+  featured: false,
+  heroImage: "/packages/santa-marta-minca-tayrona/hero.jpg",
+  gallery: [],
+  summary: "Colombia's most underrated corner, and the one where the geography does something no other country manages — snow-capped mountains and Caribbean beach within forty miles of each other. Minca is cloud forest and coffee at altitude; Tayrona is jungle running straight into the sea.",
+  itinerary: [
+    { day: 1, title: "Arrival in Santa Marta — the centre after dark", body: "Private transfer from Simón Bolívar airport. Evening in the historic centre around Parque de los Novios, which is where the city actually eats and drinks rather than where it poses. Santa Marta is scruffier than Cartagena and considerably more honest about itself — you notice on the first night." },
+    { day: 2, title: "Up to Minca", body: "An hour into the Sierra Nevada foothills and about fifteen degrees cooler. Waterfalls, a coffee finca, and hammocks with a view down to the sea. Two nights up here." },
+    { day: 3, title: "Minca slowly", body: "Birds in the morning if you want them — this is one of the best birding spots in the Americas. Otherwise: nothing. The point of Minca is that there is nothing to do and doing it is the entire experience." },
+    { day: 4, title: "Tayrona National Park", body: "Down from the mountains and into the park. Cabo San Juan, the walk in through the jungle, and beaches that look staged. Long day, worth it." },
+    { day: 5, title: "Coast day", body: "Beach at El Rodadero or Taganga, or a boat out. Diving is available from Taganga if you're certified — it's cheap and the visibility is decent." },
+    { day: 6, title: "Free day", body: "Unplanned on purpose. Most people go back up to Minca or back into Tayrona, which tells you something." },
+    { day: 7, title: "Departure", body: "Private transfer to Santa Marta airport, or on to Cartagena by road — about four hours, and a genuinely pretty drive if you'd rather combine the two." },
+  ],
+  included: [
+    "6 nights accommodation across Santa Marta and Minca",
+    "All private ground transfers including airport runs",
+    "Minca waterfalls and coffee finca day",
+    "Tayrona National Park entry, transfer and guide",
+    "Coast and beach day",
+    "24/7 phone access while you are in Colombia",
+  ],
+  excluded: [
+    "International and domestic flights",
+    "Travel insurance",
+    "Meals not listed",
+    "Diving certification or dives",
+    "Tayrona park entry is subject to seasonal closures — see below",
+  ],
+  hotels: [
+    { name: "Masaya Santa Marta — Centro Histórico", city: "Santa Marta", why: "In the old centre, walkable, with a pool. The best-value bed in the city." },
+    { name: "Minca Luxury Cabins — Deluxe Bungalow", city: "Minca", why: "The view is the whole point and this one has it. Book the deluxe, not the standard — the difference is not marginal." },
+    { name: "Samaria Resort", city: "Santa Marta", why: "If you want a resort beach day rather than the historic centre, this is the one." },
+  ],
+  caveat: "Tayrona closes for several weeks each year for indigenous restoration periods — typically parts of February, June and October, and the dates move. I check before I quote, and if your trip lands on a closure I'll rebuild the week around it rather than pretending it isn't happening.",
+}

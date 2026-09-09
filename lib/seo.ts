@@ -24,7 +24,7 @@ export function buildMetadata({
   title = SITE_NAME,
   description = SITE_DESCRIPTION,
   path = "/",
-  image = "/packages/classic-colombia/hero.svg",
+  image = "/packages/colombia-highlights/hero.jpg",
   imageAlt = SITE_NAME,
   noIndex = false,
   titleTemplate = false,

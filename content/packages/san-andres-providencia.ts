@@ -1,0 +1,48 @@
+import type { Package } from '../types'
+
+export const sanAndresProvidencia: Package = {
+  slug: "san-andres-providencia",
+  name: "San Andrés & Providencia",
+  title: "San Andrés & Providencia: Colombia's Caribbean Islands",
+  metaDescription: "Eight nights across San Andrés and Providencia — the sea of seven colours, Santa Catalina, diving, and the quietest island in the Colombian Caribbean. From $4,900 per person.",
+  nights: 8,
+  days: 9,
+  priceFrom: 4900,
+  cities: ["San Andrés", "Providencia"],
+  featured: false,
+  heroImage: "/packages/san-andres-providencia/hero.jpg",
+  gallery: [],
+  summary: "Six hundred miles off the Colombian coast and culturally closer to Jamaica than to Bogotá — English-speaking Raizal islands with their own history. San Andrés has the famous water; Providencia, an hour further, has almost nobody on it.",
+  itinerary: [
+    { day: 1, title: "Arrival on San Andrés — the bay at night", body: "Fly in from Bogotá, Medellín or Cartagena. Private transfer to the hotel, then the evening on the water — the Noche Blanca bay party if the night is right, otherwise the beach and a rum. The island runs on Caribbean time and the first night is for adjusting to it." },
+    { day: 2, title: "The island by jeep", body: "Rent a jeep and do the loop — La Piscinita, Hoyo Soplador, West View. It's a small island and driving it yourself is genuinely the best way to see it." },
+    { day: 3, title: "Water day", body: "Snorkel or dive. The reef here is the third-largest barrier reef in the world and it's in far better condition than most people expect." },
+    { day: 4, title: "Fly to Providencia", body: "The twenty-minute hop on a small plane. This is the part of the trip people are nervous about and the part they remember." },
+    { day: 5, title: "Santa Catalina and the pirates", body: "Across the wooden bridge to Santa Catalina — Morgan's Head, the old fort, and a genuinely good story attached to both." },
+    { day: 6, title: "Providencia slowly", body: "Horseback riding, the medicinal plants walk with a local guide, or nothing. There are about five thousand people on this island and no crowds anywhere." },
+    { day: 7, title: "Free day", body: "Beach, boat, or the music and history show in the evening — which is small, real, and not put on for tourists." },
+    { day: 8, title: "Back to San Andrés", body: "The short flight back, last night on the bigger island. Bay party in the evening if you want it." },
+    { day: 9, title: "Departure", body: "Private transfer to San Andrés airport." },
+  ],
+  included: [
+    "8 nights accommodation across both islands",
+    "All island transfers",
+    "Jeep rental on San Andrés",
+    "Snorkelling day with equipment",
+    "Santa Catalina and island history tours on Providencia",
+    "Horseback riding or medicinal plants walk",
+    "24/7 phone access while you are in Colombia",
+  ],
+  excluded: [
+    "International and domestic flights to San Andrés",
+    "San Andrés tourist card (approximately $35, paid at the airport)",
+    "The San Andrés–Providencia flight (I book it, you pay cost — usually $180–260 return)",
+    "Travel insurance",
+    "Diving certification or dives",
+    "Meals not listed",
+  ],
+  hotels: [
+    { name: "San Andrés Oceanfront Suites", city: "San Andrés", why: "On the water, walkable to town, and the sunsets are the reason to pay for the sea-facing room." },
+  ],
+  caveat: "Providencia is served by one small aircraft and the flights are weather-dependent. Cancellations happen, usually in the wettest months. I build a spare day into every Providencia itinerary and I never book your international return the same day you fly back from the island. If you can't tolerate that risk, take the San Andrés half only and I'll add Cartagena instead.",
+}

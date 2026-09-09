@@ -21,10 +21,10 @@ export default function Home() {
       <section className="relative isolate overflow-hidden bg-[#17382f] text-white">
         {heroPackage ? (
           <Image
-            src={heroPackage.heroImage.src}
-            alt={heroPackage.heroImage.alt}
-            width={heroPackage.heroImage.width}
-            height={heroPackage.heroImage.height}
+            src={heroPackage.heroImage}
+            alt={`${heroPackage.name} trip scene`}
+            width={1600}
+            height={1000}
             sizes="100vw"
             priority
             className="absolute inset-0 -z-20 h-full w-full object-cover"

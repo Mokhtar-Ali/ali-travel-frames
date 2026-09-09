@@ -1,0 +1,47 @@
+import type { Package } from '../types'
+
+export const cartagenaRosario: Package = {
+  slug: "cartagena-rosario",
+  name: "Cartagena & the Rosario Islands",
+  title: "Cartagena & Rosario Islands: 5 Nights of Walled City & Caribbean",
+  metaDescription: "Five nights in Cartagena's walled city plus the Rosario Islands — private guides, Getsemaní, a sunset catamaran and a full island day. From $3,400 per person.",
+  nights: 5,
+  days: 6,
+  priceFrom: 3400,
+  cities: ["Cartagena", "Rosario Islands"],
+  featured: true,
+  heroImage: "/packages/cartagena-rosario/hero.jpg",
+  gallery: [],
+  summary: "The Colombia most Americans picture. Cartagena's walled city is genuinely one of the best-preserved colonial centres in the Americas, and the Rosario Islands are forty minutes out by boat. Three nights in the city, then the water.",
+  itinerary: [
+    { day: 1, title: "Arrival in Cartagena — sunset and the first night out", body: "Private transfer from Rafael Núñez, a fifteen-minute drive, which is one of Cartagena's quiet advantages. Sunset on the walls, then into Getsemaní for the evening: a premium rum tasting, or a salsa class at Carpinteros if you would rather be moving than sitting. Cartagena is a night city and the first evening should say so." },
+    { day: 2, title: "The walled city and Getsemaní", body: "A private guide through the Ciudad Amurallada in the morning — the history is genuinely interesting when someone who knows it is telling you. Afternoon in Getsemaní for the street art and the neighbourhood that actually lives there. Evening free." },
+    { day: 3, title: "Rosario Islands", body: "Out by boat to the Rosarios — a full day, clear water, and lunch on the island. Back to Cartagena for the evening, or stay out for the sunset if the weather is right." },
+    { day: 4, title: "Food, or whatever you want", body: "A street food tour through Bazurto market if you want the real thing, or the gastronomy version if you'd rather eat sitting down. Afternoon free. Evening: sunset catamaran, which is the single most-photographed thing I book and deserves to be." },
+    { day: 5, title: "Free day", body: "Deliberately unplanned. Beach, the emerald workshop, a salsa class, Palenque, or nothing. I'll give you options the day before based on what you've enjoyed so far." },
+    { day: 6, title: "Departure", body: "Private transfer to the airport. Cartagena's airport is small and slow — I'll tell you when to leave and it will be earlier than you think is necessary." },
+  ],
+  included: [
+    "5 nights accommodation in the walled city or Getsemaní",
+    "All private ground transfers including both airport runs",
+    "Arrival-night rum tasting or salsa class in Getsemaní",
+    "Private walled city tour with guide",
+    "Getsemaní walking and street art tour",
+    "Full-day Rosario Islands boat trip with lunch",
+    "Food tour of your choice — street or gastronomy",
+    "Sunset catamaran experience",
+    "24/7 phone access while you are in Colombia",
+  ],
+  excluded: [
+    "International flights",
+    "Travel insurance",
+    "Meals not listed",
+    "Optional add-ons (Totumo volcano, Palenque, salsa classes, photographer)",
+  ],
+  hotels: [
+    { name: "Townhouse Boutique Hotel & Rooftop", city: "Cartagena", why: "Small, in the walled city, and the rooftop is where you'll end up every evening. My default for couples." },
+    { name: "Colonial Hotel", city: "Cartagena", why: "Quieter and more traditional, inside the walls. Better if you want calm over a scene." },
+    { name: "Luxury 4-Bedroom Penthouse with Private Jacuzzi", city: "Cartagena", why: "For groups of four to eight. Works out cheaper per person than four hotel rooms and is a much better trip." },
+  ],
+  caveat: "Cartagena is hot and humid year-round — genuinely, not politely. December through March is the most comfortable. If you're coming in August or September I'll schedule everything for early morning and late afternoon, and you'll thank me.",
+}

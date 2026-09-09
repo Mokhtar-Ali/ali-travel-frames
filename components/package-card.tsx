@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { TravelPackage } from "@/content/packages";
+import type { Package } from "@/content/packages";
 import { formatUsd } from "@/lib/format";
 
 type PackageCardProps = {
-  travelPackage: TravelPackage;
+  travelPackage: Package;
   priority?: boolean;
 };
 
@@ -20,10 +20,10 @@ export function PackageCard({
         aria-label={`View ${travelPackage.name}`}
       >
         <Image
-          src={travelPackage.heroImage.src}
-          alt={travelPackage.heroImage.alt}
-          width={travelPackage.heroImage.width}
-          height={travelPackage.heroImage.height}
+          src={travelPackage.heroImage}
+          alt={`${travelPackage.name} trip scene`}
+          width={1600}
+          height={1000}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={priority}
           className="aspect-[16/10] h-auto w-full object-cover transition duration-300 group-hover:scale-105"
@@ -47,10 +47,10 @@ export function PackageCard({
           </p>
         </div>
         <p className="font-heading text-lg font-bold text-stone-950">
-          From {formatUsd(travelPackage.pricePerPersonUsd)} per person
+          From {formatUsd(travelPackage.priceFrom)} per person
         </p>
         <p className="text-base leading-7 text-stone-700">
-          {travelPackage.shortSummary}
+          {travelPackage.summary}
         </p>
         <Link
           href={`/packages/${travelPackage.slug}`}

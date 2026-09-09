@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/json-ld";
 import {
   getAllPackageSlugs,
   getPackageBySlug,
-  type TravelPackage,
+  type Package,
 } from "@/content/packages";
 import { formatUsd } from "@/lib/format";
 import { buildMetadata, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -38,12 +38,12 @@ export async function generateMetadata({
     title: travelPackage.title,
     description: travelPackage.metaDescription,
     path: `/packages/${travelPackage.slug}`,
-    image: travelPackage.heroImage.src,
-    imageAlt: travelPackage.heroImage.alt,
+    image: travelPackage.heroImage,
+    imageAlt: `${travelPackage.name} trip scene`,
   });
 }
 
-function buildTouristTripJsonLd(travelPackage: TravelPackage) {
+function buildTouristTripJsonLd(travelPackage: Package) {
   const packageUrl = `${SITE_URL}/packages/${travelPackage.slug}`;
 
   return {
@@ -51,7 +51,7 @@ function buildTouristTripJsonLd(travelPackage: TravelPackage) {
     "@type": "TouristTrip",
     name: travelPackage.name,
     description: travelPackage.summary,
-    image: `${SITE_URL}${travelPackage.heroImage.src}`,
+    image: `${SITE_URL}${travelPackage.heroImage}`,
     url: packageUrl,
     provider: {
       "@type": "TravelAgency",
@@ -62,15 +62,11 @@ function buildTouristTripJsonLd(travelPackage: TravelPackage) {
     itinerary: travelPackage.itinerary.map((day) => ({
       "@type": "CreativeWork",
       name: `Day ${day.day}: ${day.title}`,
-      locationCreated: {
-        "@type": "Place",
-        name: day.city,
-      },
-      description: day.description,
+      description: day.body,
     })),
     offers: {
       "@type": "Offer",
-      price: travelPackage.pricePerPersonUsd,
+      price: travelPackage.priceFrom,
       priceCurrency: "USD",
       url: packageUrl,
       availability: "https://schema.org/InStock",
@@ -97,10 +93,10 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
       <article>
         <section className="relative isolate min-h-[620px] overflow-hidden bg-[#17382f] text-white">
           <Image
-            src={travelPackage.heroImage.src}
-            alt={travelPackage.heroImage.alt}
-            width={travelPackage.heroImage.width}
-            height={travelPackage.heroImage.height}
+            src={travelPackage.heroImage}
+            alt={`${travelPackage.name} trip scene`}
+            width={1600}
+            height={1000}
             sizes="100vw"
             priority
             className="absolute inset-0 -z-20 h-full w-full object-cover"
@@ -114,10 +110,10 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
               {travelPackage.name}
             </h1>
             <p className="mt-5 font-heading text-2xl font-bold">
-              From {formatUsd(travelPackage.pricePerPersonUsd)} per person
+              From {formatUsd(travelPackage.priceFrom)} per person
             </p>
             <p className="mt-5 max-w-2xl text-xl leading-8 text-stone-100">
-              {travelPackage.shortSummary}
+              {travelPackage.summary}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link
@@ -170,11 +166,8 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
                     <h3 className="font-heading text-2xl font-bold text-[#1f3d35]">
                       {day.title}
                     </h3>
-                    <p className="mt-1 text-sm font-semibold text-stone-600">
-                      {day.city}
-                    </p>
                     <p className="mt-3 text-base leading-7 text-stone-700">
-                      {day.description}
+                      {day.body}
                     </p>
                   </div>
                 </li>
@@ -203,7 +196,7 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
                 Not included
               </h2>
               <ul className="mt-6 grid gap-3 text-base leading-7 text-stone-700">
-                {travelPackage.notIncluded.map((item) => (
+                {travelPackage.excluded.map((item) => (
                   <li key={item} className="flex gap-3">
                     <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#b35b3b]" />
                     <span>{item}</span>

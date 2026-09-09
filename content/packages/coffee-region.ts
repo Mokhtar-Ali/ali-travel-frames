@@ -1,0 +1,46 @@
+import type { Package } from '../types'
+
+export const coffeeRegion: Package = {
+  slug: "coffee-region",
+  name: "Coffee Region: Salento, Cocora & the Farms",
+  title: "Colombia Coffee Region: Salento, Cocora Valley & Coffee Farms",
+  metaDescription: "Five nights in Colombia's coffee country — Salento, the Cocora Valley wax palms, private coffee and chocolate farms, and the Santa Rosa hot springs. From $3,200 per person.",
+  nights: 5,
+  days: 6,
+  priceFrom: 3200,
+  cities: ["Salento", "Filandia", "Cocora Valley"],
+  featured: true,
+  heroImage: "/packages/coffee-region/hero.jpg",
+  gallery: [],
+  summary: "Green, slow, and the part of Colombia that surprises Americans most. You are on farms rather than in cities, the Cocora Valley has the tallest palms in the world, and the towns — Salento, Filandia — are the painted-balcony Colombia people picture before they arrive.",
+  itinerary: [
+    { day: 1, title: "Arrival in the Coffee Region — Salento at night", body: "Fly into Pereira or Armenia, both short hops from Bogotá or Medellín. Private transfer to Salento, about an hour. Evening on Calle Real once the day-trippers have gone: trout for dinner, then a game of tejo — the national sport, played with gunpowder, and the fastest way to end up drinking with locals on your first night." },
+    { day: 2, title: "Cocora Valley", body: "Out early, before the cloud comes in. The wax palm forest is the reason people come here and the light in the first two hours is completely different from the rest of the day. Walking is optional — the valley works from the bottom too. Afternoon free in Salento." },
+    { day: 3, title: "A working coffee farm", body: "A private farm visit — not the bus-tour version. You pick, you see the whole process, and you sit with the person who grows it. Afternoon adds a chocolate farm if you want it, which most people do." },
+    { day: 4, title: "Filandia and the miradores", body: "Filandia is Salento's quieter neighbour and the better town of the two, though nobody says that out loud. The mirador, the balconies, lunch somewhere with a view over the valley." },
+    { day: 5, title: "Santa Rosa hot springs", body: "Thermal pools under a waterfall, about two hours out. It's the least Instagrammed thing in the region and the one people are most reluctant to leave. Free evening back in Salento." },
+    { day: 6, title: "Departure", body: "Private transfer to Pereira or Armenia. Both airports are small and calm, which after a week in Colombia feels like a gift." },
+  ],
+  included: [
+    "5 nights accommodation",
+    "All private ground transfers including both airport runs",
+    "Private Cocora Valley experience with guide",
+    "Private coffee farm tour and tasting",
+    "Chocolate farm experience",
+    "Filandia and miradores day",
+    "Santa Rosa hot springs entry and transfer",
+    "24/7 phone access while you are in Colombia",
+  ],
+  excluded: [
+    "International and domestic flights",
+    "Travel insurance",
+    "Meals not listed",
+    "Salento bird watching (optional add-on)",
+  ],
+  hotels: [
+    { name: "Salento Hotel", city: "Salento", why: "In town, walkable to Calle Real, and quiet at night, which is not true of everywhere in Salento." },
+    { name: "GHL Hotel Abadía Plaza", city: "Pereira", why: "For the arrival or departure night if your flight times are awkward. Reliable rather than characterful." },
+    { name: "Finlandia Hotel", city: "Filandia", why: "An option if you'd rather base in Filandia and day-trip to Salento — a trade I'd recommend to anyone who dislikes crowds." },
+  ],
+  caveat: "This region rains, and it rains most afternoons between April and May and again October to November. That's also when it's greenest and emptiest. I'd rather tell you now than have you find out on day two — bring a light rain shell and the trip is unaffected.",
+}
