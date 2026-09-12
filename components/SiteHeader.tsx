@@ -7,10 +7,11 @@ import { useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 
 const navItems = [
-  { label: "Colombia", href: "/#statement" },
-  { label: "Journeys", href: "/packages" },
+  { label: "Colombia", href: "/#regions" },
+  { label: "Packages", href: "/packages" },
   { label: "Guides", href: "/#guide" },
   { label: "About", href: "/about" },
+  { label: "Reviews", href: "/reviews" },
 ];
 
 export function SiteHeader() {
@@ -28,10 +29,10 @@ export function SiteHeader() {
           <Image
             src="/brand/logo.png"
             alt="Ali Travel Frames"
-            width={120}
-            height={80}
+            width={168}
+            height={112}
             loading="lazy"
-            className="h-10 w-auto"
+            className="h-11 w-auto min-[900px]:h-14"
           />
         </Link>
         <nav
@@ -42,8 +43,8 @@ export function SiteHeader() {
             <HeaderNavLink key={item.href} item={item} pathname={pathname} />
           ))}
         </nav>
-        <ButtonLink href="/plan" variant="quiet" className="site-header-cta">
-          Plan a trip
+        <ButtonLink href="/plan" className="site-header-cta">
+          Book a free call
         </ButtonLink>
         <button
           className="site-menu-toggle"
@@ -71,11 +72,10 @@ export function SiteHeader() {
         ))}
         <ButtonLink
           href="/plan"
-          variant="quiet"
           className="mt-2 w-full"
           onClick={() => setIsMenuOpen(false)}
         >
-          Plan a trip
+          Book a free call
         </ButtonLink>
       </div>
     </header>
@@ -92,7 +92,11 @@ function HeaderNavLink({
   onNavigate?: () => void;
 }) {
   const isActive =
-    pathname === item.href || pathname.startsWith(`${item.href}/`);
+    item.href === "/"
+      ? pathname === "/"
+      : item.href.includes("#")
+        ? false
+        : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
   return (
     <Link

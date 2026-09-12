@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
-import { SITE_NAME, SITE_PHONE_PLACEHOLDER } from "@/lib/seo";
+import { SITE_NAME } from "@/lib/seo";
 
 const tripLinks = [
-  { label: "Colombia", href: "/#statement" },
-  { label: "Journeys", href: "/packages" },
+  { label: "Colombia", href: "/#regions" },
+  { label: "Packages", href: "/packages" },
   { label: "Guide", href: "/#guide" },
 ];
 
@@ -13,6 +13,9 @@ const companyLinks = [
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ];
+
+const phoneLabel = "+1 (917) 780-9875";
+const phoneHref = "tel:+19177809875";
 
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/" },
@@ -23,12 +26,12 @@ const socials = [
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <div className="site-gutter">
+      <div className="footer-inner">
         <div className="site-footer-grid">
           <div>
             <Link
               href="/"
-              className="font-heading text-3xl leading-tight text-white"
+              className="footer-brand"
             >
               {SITE_NAME}
             </Link>
@@ -37,7 +40,10 @@ export function SiteFooter() {
               local guides, and thoughtful pacing from start to finish.
             </p>
             <p className="mt-5 text-sm font-medium">
-              US phone: {SITE_PHONE_PLACEHOLDER}
+              US phone:{" "}
+              <Link href={phoneHref} className="footer-link">
+                {phoneLabel}
+              </Link>
             </p>
           </div>
 
@@ -45,10 +51,10 @@ export function SiteFooter() {
           <FooterLinkColumn title="Company" links={companyLinks} />
 
           <div>
-            <p className="font-heading text-2xl leading-tight text-white">
+            <p className="footer-column-title">
               Start with Colombia
             </p>
-            <p className="mt-3 small-text text-white/[.72]">
+            <p className="mt-3 small-text">
               We will map the right Colombia route before any planning begins.
             </p>
             <ButtonLink href="/plan" className="mt-5 w-full sm:w-fit">
@@ -69,8 +75,12 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="footer-bottom mt-12">
-          <p>Copyright 2026 {SITE_NAME}. All rights reserved.</p>
-          <p>Built by Cleopatra Solutions</p>
+          <div>
+            <p>Website by Cleopatra Solutions</p>
+            <p className="mt-2">
+              Copyright 2026 {SITE_NAME}. All rights reserved.
+            </p>
+          </div>
         </div>
       </div>
     </footer>
@@ -86,7 +96,7 @@ function FooterLinkColumn({
 }) {
   return (
     <nav aria-label={title}>
-      <p className="font-heading text-2xl leading-tight text-white">{title}</p>
+      <p className="footer-column-title">{title}</p>
       <div className="mt-4 grid gap-3">
         {links.map((item) => (
           <Link key={item.href} href={item.href} className="footer-link w-fit">

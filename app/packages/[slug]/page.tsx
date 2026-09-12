@@ -69,27 +69,31 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
             <div className="hero-scrim" />
           </>
         ) : null}
-        <div className="section-inner flex min-h-[620px] flex-col justify-end py-16 text-white">
-          <p className={`eyebrow ${hasHeroImage ? "text-white/[.7]" : ""}`}>
+        <div
+          className={`section-inner package-hero-content flex min-h-[620px] flex-col justify-end py-16 ${
+            hasHeroImage ? "package-hero-content-on-image" : ""
+          }`}
+        >
+          <p className={`eyebrow ${hasHeroImage ? "package-hero-eyebrow" : ""}`}>
             {travelPackage.nights} nights
           </p>
           <h1
             className={`display-title mt-5 max-w-[13ch] ${
-              hasHeroImage ? "text-white" : "text-ink"
+              hasHeroImage ? "package-hero-title-on-image" : "text-ink"
             }`}
           >
             {travelPackage.name}
           </h1>
           <p
             className={`mt-6 text-[20px] font-medium leading-[1.5] ${
-              hasHeroImage ? "text-white/[.86]" : "text-ink"
+              hasHeroImage ? "package-hero-price-on-image" : "text-ink"
             }`}
           >
             From {formatUsd(travelPackage.priceFrom)} per person
           </p>
           <p
             className={`mt-5 max-w-[52ch] ${
-              hasHeroImage ? "text-white/[.82]" : "text-ink-2"
+              hasHeroImage ? "package-hero-summary-on-image" : "text-ink-2"
             }`}
           >
             {travelPackage.summary}
@@ -98,7 +102,7 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
             <ButtonLink href="/plan">Book a free 15-minute call</ButtonLink>
             <ButtonLink
               href={`/plan?package=${travelPackage.slug}`}
-              variant={hasHeroImage ? "onImage" : "quiet"}
+              variant={hasHeroImage ? "ghostGlass" : "quiet"}
             >
               Customise this trip
             </ButtonLink>

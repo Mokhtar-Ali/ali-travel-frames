@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { Reveal } from "@/components/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 
 const slides = [
@@ -112,7 +111,7 @@ export function Hero() {
       return;
     }
 
-    const timer = window.setInterval(advanceSlide, 6500);
+    const timer = window.setInterval(advanceSlide, 4000);
 
     return () => {
       window.clearInterval(timer);
@@ -156,7 +155,7 @@ export function Hero() {
   }, [activeIndex, prefersReducedMotion]);
 
   return (
-    <Reveal
+    <section
       className="home-hero"
       onBlurCapture={(event) => {
         const relatedTarget =
@@ -170,32 +169,28 @@ export function Hero() {
       onPointerEnter={() => setIsPointerOver(true)}
       onPointerLeave={() => setIsPointerOver(false)}
     >
-      <div data-reveal-static>
-        {prefersReducedMotion || previousIndex === activeIndex ? null : (
-          <HeroImage
-            key={`previous-${previousSlide.image}`}
-            slide={previousSlide}
-            alt=""
-            className={`hero-slide ${
-              isTransitioning ? "" : "hero-slide-active"
-            }`}
-            isFirstSlide={previousIndex === 0}
-            aria-hidden
-          />
-        )}
+      {prefersReducedMotion || previousIndex === activeIndex ? null : (
         <HeroImage
-          key={`active-${currentSlide.image}`}
-          slide={currentSlide}
-          alt={`${currentSlide.city} in Colombia`}
-          className={`hero-slide ${
-            isTransitioning || previousIndex === activeIndex
-              ? "hero-slide-active"
-              : ""
-          }`}
-          isFirstSlide={currentIndex === 0}
+          key={`previous-${previousSlide.image}`}
+          slide={previousSlide}
+          alt=""
+          className={`hero-slide ${isTransitioning ? "" : "hero-slide-active"}`}
+          isFirstSlide={previousIndex === 0}
+          aria-hidden
         />
-        <div className="hero-scrim" />
-      </div>
+      )}
+      <HeroImage
+        key={`active-${currentSlide.image}`}
+        slide={currentSlide}
+        alt={`${currentSlide.city} in Colombia`}
+        className={`hero-slide ${
+          isTransitioning || previousIndex === activeIndex
+            ? "hero-slide-active"
+            : ""
+        }`}
+        isFirstSlide={currentIndex === 0}
+      />
+      <div className="hero-scrim" />
       <div className="hero-content">
         <h1 className="display-title hero-title">
           Private Colombia trips for travelers who want one country done right
@@ -206,13 +201,13 @@ export function Hero() {
         </p>
         <div className="hero-actions">
           <ButtonLink href="/plan">Plan a trip</ButtonLink>
-          <ButtonLink href="/packages" variant="onImage">
+          <ButtonLink href="/packages" variant="ghostGlass">
             See the journeys
           </ButtonLink>
         </div>
       </div>
       <p className="hero-city-indicator">{currentSlide.city}</p>
-    </Reveal>
+    </section>
   );
 }
 

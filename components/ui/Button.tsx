@@ -1,12 +1,19 @@
 import Link from "next/link";
 import type { ButtonHTMLAttributes, ComponentPropsWithoutRef } from "react";
 
-export type ButtonVariant = "primary" | "quiet" | "onImage";
+export type ButtonVariant =
+  | "primary"
+  | "secondary"
+  | "ghostGlass"
+  | "quiet"
+  | "onImage";
 
 const variantClassNames: Record<ButtonVariant, string> = {
   primary: "btn-primary",
+  secondary: "btn-secondary",
+  ghostGlass: "btn-ghost-glass",
   quiet: "btn-quiet",
-  onImage: "btn-on-image",
+  onImage: "btn-ghost-glass",
 };
 
 export function buttonClassName(

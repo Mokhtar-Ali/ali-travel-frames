@@ -18,7 +18,8 @@ export function Film() {
   return (
     <Reveal className="home-section bg-paper">
       <div className="section-inner">
-        <h2 className="section-title">From the channel</h2>
+        <p className="eyebrow">From the channel</p>
+        <h2 className="section-title mt-4">Recent trips</h2>
         <div className="video-main-grid mt-10">
           <VideoFacade video={heroVideo} isLarge />
           <div className="video-small-grid">

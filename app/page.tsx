@@ -17,29 +17,45 @@ const regions = [
   {
     name: "Cartagena",
     slug: "cartagena",
-    image: "/destinations/cartagena.jpg",
+    image: "/hero/01-cartagena.jpg",
+    chip: "Walled city · Islands",
+    cityMatches: ["Cartagena", "Rosario Islands"],
   },
   {
-    name: "Medellin",
+    name: "Medellín",
     slug: "medellin",
-    image: "/destinations/medellin.jpg",
+    image: "/hero/03-medellin.jpg",
+    chip: "City · Guatapé",
+    cityMatches: ["Medellín", "Guatapé"],
   },
   {
     name: "Coffee Region",
     slug: "coffee-region",
     image: "/destinations/coffee-region.jpg",
+    chip: "Farms · Waterfalls",
+    cityMatches: ["Salento", "Filandia", "Cocora Valley", "Pereira"],
   },
   {
     name: "Santa Marta",
     slug: "santa-marta",
     image: "/destinations/santa-marta.jpg",
+    chip: "Tayrona · Minca",
+    cityMatches: ["Santa Marta", "Minca", "Tayrona", "Palomino", "La Guajira"],
   },
   {
-    name: "San Andres",
+    name: "San Andrés",
     slug: "san-andres",
     image: "/destinations/san-andres.jpg",
+    chip: "Reefs · Beaches",
+    cityMatches: ["San Andrés", "Providencia"],
   },
 ];
+
+function countJourneysForRegion(cityMatches: string[]) {
+  return packages.filter((travelPackage) =>
+    travelPackage.cities.some((city) => cityMatches.includes(city)),
+  ).length;
+}
 
 export const metadata: Metadata = buildMetadata({
   title: "Private Colombia Travel Planning",
@@ -52,7 +68,6 @@ export default function Home() {
   return (
     <div className="bg-paper">
       <Hero />
-      <Statement />
       <Journeys />
       <Regions />
       <AliSection />
@@ -64,36 +79,9 @@ export default function Home() {
   );
 }
 
-function Statement() {
-  return (
-    <Reveal id="statement" className="home-section bg-paper">
-      <div className="section-inner">
-        <div className="statement-copy">
-          <p className="eyebrow">Colombia only</p>
-          <div className="mt-10 grid gap-8 text-[20px] leading-[1.8] text-ink">
-            <p>
-              Ali Travel Frames is run by an American who lives in Colombia, so
-              your trip is planned from the ground, not from a distant desk.
-            </p>
-            <p>
-              This is one country, studied slowly: the Caribbean coast, the
-              coffee mountains, Medellin, Cartagena, and the human details that
-              make the logistics feel easy.
-            </p>
-            <p>
-              When something needs a real answer, you are not passed through a
-              funnel. You get a person who answers the phone.
-            </p>
-          </div>
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
 function Journeys() {
   return (
-    <Reveal className="home-section bg-paper">
+    <Reveal id="journeys" className="home-section bg-paper">
       <div className="section-inner">
         <p className="eyebrow">Journeys</p>
         <h2 className="section-title mt-4">Ten journeys</h2>
@@ -101,7 +89,7 @@ function Journeys() {
           Start with a proven route, then tune the pace, hotels, guides, and
           quiet time around how you actually like to travel.
         </p>
-        <div className="journeys-grid mt-20">
+        <div className="journeys-grid mt-10">
           {featuredJourneys.map((journey, index) => (
             <Link
               key={journey.slug}
@@ -135,7 +123,7 @@ function Journeys() {
             </Link>
           ))}
         </div>
-        <div className="mt-20 text-center">
+        <div className="mt-10 text-center">
           <ButtonLink href="/packages" variant="quiet">
             All ten journeys
           </ButtonLink>
@@ -148,33 +136,41 @@ function Journeys() {
 function Regions() {
   return (
     <Reveal className="home-section bg-sand">
-      <div className="section-inner">
+      <div className="section-inner-wide">
         <p className="eyebrow">Regions</p>
         <h2 className="section-title mt-4 max-w-[14ch]">
           Five places to begin
         </h2>
-        <div className="regions-grid mt-16">
-          {regions.map((region) => (
-            <Link
-              key={region.slug}
-              href={`/packages?region=${region.slug}`}
-              className="region-card group"
-            >
-              <Image
-                src={region.image}
-                alt={`${region.name} Colombia`}
-                width={600}
-                height={800}
-                loading="lazy"
-                sizes="(max-width: 520px) 100vw, (max-width: 700px) 50vw, (max-width: 1100px) 33vw, 20vw"
-                className="media-scale h-full w-full object-cover"
-              />
-              <div className="region-scrim" />
-              <h3 className="absolute bottom-5 left-5 text-[20px] leading-none text-white">
-                {region.name}
-              </h3>
-            </Link>
-          ))}
+        <div className="regions-grid mt-10">
+          {regions.map((region) => {
+            const journeyCount = countJourneysForRegion(region.cityMatches);
+
+            return (
+              <Link
+                key={region.slug}
+                href={`/packages?region=${region.slug}`}
+                className="region-card group"
+              >
+                <Image
+                  src={region.image}
+                  alt={`${region.name} Colombia`}
+                  width={600}
+                  height={800}
+                  loading="lazy"
+                  sizes="(max-width: 520px) 100vw, (max-width: 700px) 50vw, (max-width: 1100px) 33vw, 20vw"
+                  className="media-scale h-full w-full object-cover"
+                />
+                <div className="region-scrim" />
+                <div className="region-content">
+                  <p className="region-chip">{region.chip}</p>
+                  <h3 className="region-title">{region.name}</h3>
+                  <p className="region-count">
+                    {journeyCount} {journeyCount === 1 ? "journey" : "journeys"}
+                  </p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </Reveal>
@@ -186,10 +182,10 @@ function AliSection() {
     <Reveal className="home-section bg-paper">
       <div className="section-inner ali-grid">
         <div className="media-frame aspect-[4/5] bg-sand">
-          {/* TODO: Replace this Medellin placeholder with a portrait of Ali. */}
+          {/* TODO: Add Ali's portrait at /public/brand/ali.jpg. */}
           <Image
-            src="/hero/03-medellin.jpg"
-            alt="Ali in Colombia placeholder"
+            src="/brand/ali.jpg"
+            alt="Ali in Colombia"
             width={900}
             height={1125}
             loading="lazy"
@@ -198,7 +194,7 @@ function AliSection() {
         </div>
         <div>
           <p className="eyebrow">Who plans your trip</p>
-          <h2 className="section-title mt-4 max-w-[14ch]">
+          <h2 className="section-title balanced-title mt-4 max-w-[14ch]">
             Planned by someone who lives it
           </h2>
           <div className="mt-8 grid gap-6">
@@ -212,6 +208,10 @@ function AliSection() {
               enough structure to feel held, enough space for the country to
               surprise you.
             </p>
+            <p>
+              When something needs a real answer, you get a person in Colombia
+              who answers the phone.
+            </p>
           </div>
           <ButtonLink href="/about" variant="quiet" className="mt-10">
             About Ali
@@ -224,7 +224,7 @@ function AliSection() {
 
 function Invitation() {
   return (
-    <Reveal className="invitation-section bg-paper">
+    <Reveal className="home-section bg-paper">
       <div className="section-inner text-center">
         <h2 className="display-title mx-auto max-w-[12ch]">
           Bring me the trip you keep imagining
