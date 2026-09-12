@@ -1,26 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Bricolage_Grotesque, Source_Serif_4 } from "next/font/google";
-import { JsonLd } from "@/components/json-ld";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { Fraunces, Inter } from "next/font/google";
+import Script from "next/script";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
+import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import {
   buildMetadata,
   SITE_DESCRIPTION,
   SITE_NAME,
-  SITE_PHONE_PLACEHOLDER,
-  SITE_URL,
 } from "@/lib/seo";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-  variable: "--font-bricolage",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
-  variable: "--font-source-serif",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -35,36 +36,34 @@ export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-const travelAgencyJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "TravelAgency",
-  name: SITE_NAME,
-  url: SITE_URL,
-  telephone: SITE_PHONE_PLACEHOLDER,
-  areaServed: ["United States", "Colombia"],
-  priceRange: "$$$",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "US",
-  },
-  sameAs: [
-    "https://www.instagram.com/",
-    "https://www.tiktok.com/",
-    "https://www.youtube.com/",
-  ],
-};
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${sourceSerif.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${fraunces.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col">
-        <JsonLd id="travel-agency-json-ld" data={travelAgencyJsonLd} />
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
+        <WhatsAppFloat />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-RG8G63M53T"
+          strategy="afterInteractive"
+        />
+        <Script id="ga4-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-RG8G63M53T');
+          `}
+        </Script>
       </body>
     </html>
   );
