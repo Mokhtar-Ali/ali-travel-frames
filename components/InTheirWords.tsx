@@ -8,7 +8,7 @@ import { reviews } from "@/lib/reviews";
 
 const mediaQuery = "(prefers-reduced-motion: reduce)";
 const colombiaReviewNames = new Set([
-  "Marwa Rezk",
+  "Marwa Rezq",
   "Harryele Eugene",
   "Adam",
   "Josh Wallace",

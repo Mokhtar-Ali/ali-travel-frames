@@ -3,21 +3,23 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ButtonLink } from "@/components/ui/Button";
+import { hero } from "@/content/site";
 
 const slides = [
   { city: "Cartagena", image: "/hero/01-cartagena.jpg" },
   { city: "Rosario Islands", image: "/hero/02-rosario.jpg" },
-  { city: "Medellin", image: "/hero/03-medellin.jpg" },
-  { city: "Guatape", image: "/hero/04-guatape.jpg" },
+  { city: "Medellín", image: "/hero/03-medellin.jpg" },
+  { city: "Guatapé", image: "/hero/04-guatape.jpg" },
   { city: "Santa Fe de Antioquia", image: "/hero/05-santa-fe.jpg" },
   { city: "Santa Marta", image: "/hero/06-santa-marta.jpg" },
   { city: "Tayrona", image: "/hero/07-tayrona.jpg" },
-  { city: "San Andres", image: "/hero/08-san-andres.jpg" },
+  { city: "San Andrés", image: "/hero/08-san-andres.jpg" },
   { city: "Johnny Cay", image: "/hero/09-johnny-cay.jpg" },
   { city: "Coffee Region", image: "/hero/10-coffee-region.jpg" },
 ];
 
 const mediaQuery = "(prefers-reduced-motion: reduce)";
+const crossfadeDurationMs = 450;
 
 type HeroSlide = (typeof slides)[number];
 type NavigatorWithConnection = Navigator & {
@@ -65,6 +67,7 @@ export function Hero() {
   const [isTabHidden, setIsTabHidden] = useState(false);
   const activeIndexRef = useRef(activeIndex);
   const frameRef = useRef<number | null>(null);
+  const transitionTimerRef = useRef<number | null>(null);
   const prefersReducedMotion = usePrefersReducedMotion();
   const currentIndex = prefersReducedMotion ? 0 : activeIndex;
   const currentSlide = slides[currentIndex];
@@ -94,6 +97,9 @@ export function Hero() {
     if (frameRef.current !== null) {
       window.cancelAnimationFrame(frameRef.current);
     }
+    if (transitionTimerRef.current !== null) {
+      window.clearTimeout(transitionTimerRef.current);
+    }
 
     setPreviousIndex(activeIndexRef.current);
     activeIndexRef.current = nextIndex;
@@ -103,6 +109,11 @@ export function Hero() {
     frameRef.current = window.requestAnimationFrame(() => {
       setIsTransitioning(true);
       frameRef.current = null;
+
+      transitionTimerRef.current = window.setTimeout(() => {
+        setPreviousIndex(nextIndex);
+        transitionTimerRef.current = null;
+      }, crossfadeDurationMs);
     });
   }, []);
 
@@ -122,6 +133,9 @@ export function Hero() {
     return () => {
       if (frameRef.current !== null) {
         window.cancelAnimationFrame(frameRef.current);
+      }
+      if (transitionTimerRef.current !== null) {
+        window.clearTimeout(transitionTimerRef.current);
       }
     };
   }, []);
@@ -193,7 +207,7 @@ export function Hero() {
       <div className="hero-scrim" />
       <div className="hero-content">
         <h1 className="display-title hero-title">
-          Private Colombia trips for travelers who want one country done right
+          {hero.h1}
         </h1>
         <p className="hero-subtitle">
           Boutique hotels, local guides, island days, mountain air, and a real

@@ -12,6 +12,7 @@ export const santaMartaMincaTayrona: Package = {
   featured: false,
   heroImage: "/packages/santa-marta-minca-tayrona/hero.jpg",
   gallery: [],
+  teaser: "Snow-capped mountains, cloud forest, and Caribbean beaches in one wild corner.",
   summary: "Colombia's most underrated corner, and the one where the geography does something no other country manages — snow-capped mountains and Caribbean beach within forty miles of each other. Minca is cloud forest and coffee at altitude; Tayrona is jungle running straight into the sea.",
   itinerary: [
     { day: 1, title: "Arrival in Santa Marta — the centre after dark", body: "Private transfer from Simón Bolívar airport. Evening in the historic centre around Parque de los Novios, which is where the city actually eats and drinks rather than where it poses. Santa Marta is scruffier than Cartagena and considerably more honest about itself — you notice on the first night." },

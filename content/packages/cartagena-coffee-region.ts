@@ -12,6 +12,7 @@ export const cartagenaCoffeeRegion: Package = {
   featured: false,
   heroImage: "/packages/cartagena-coffee-region/hero.jpg",
   gallery: [],
+  teaser: "Cartagena's Caribbean heat meets the cool, green calm of Colombia's coffee country.",
   summary: "Heat and cool, sea and mountain. Cartagena is the Colombia people arrive expecting; the coffee region is the one they leave talking about. The contrast between the two halves is the entire argument for this itinerary.",
   itinerary: [
     { day: 1, title: "Arrival in Cartagena — sunset and the first night out", body: "Private transfer, fifteen minutes from the airport. Sunset on the walls, then Getsemaní after dark — rum tasting or a salsa class, your call. Cartagena earns its reputation at night." },

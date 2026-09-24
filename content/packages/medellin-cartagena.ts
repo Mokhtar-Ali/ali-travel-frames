@@ -12,6 +12,7 @@ export const medellinCartagena: Package = {
   featured: true,
   heroImage: "/packages/medellin-cartagena/hero.jpg",
   gallery: [],
+  teaser: "Colombia's two essential cities, joined by one short flight and no wasted days.",
   summary: "If you only do one Colombia trip, this is it. The two cities are nothing like each other — one is a valley city rebuilt out of a genuinely dark thirty years, the other is a Caribbean port that's looked much the same since the 1600s. A short flight between them and no wasted days.",
   itinerary: [
     { day: 1, title: "Arrival in Medellín — the city at night", body: "Private transfer from the airport. Evening: the 360 miradores run — the whole valley lit up, which is how you should meet this city. Nothing strenuous on arrival day." },

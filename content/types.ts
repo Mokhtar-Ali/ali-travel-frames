@@ -22,6 +22,7 @@ export type Package = {
   featured: boolean;
   heroImage: string;
   gallery: string[];
+  teaser: string;
   summary: string;
   itinerary: PackageItineraryDay[];
   included: string[];

@@ -12,6 +12,7 @@ export const sanAndresProvidencia: Package = {
   featured: false,
   heroImage: "/packages/san-andres-providencia/hero.jpg",
   gallery: [],
+  teaser: "Far-flung Raizal islands with vivid water, rich history, and room to disappear.",
   summary: "Six hundred miles off the Colombian coast and culturally closer to Jamaica than to Bogotá — English-speaking Raizal islands with their own history. San Andrés has the famous water; Providencia, an hour further, has almost nobody on it.",
   itinerary: [
     { day: 1, title: "Arrival on San Andrés — the bay at night", body: "Fly in from Bogotá, Medellín or Cartagena. Private transfer to the hotel, then the evening on the water — the Noche Blanca bay party if the night is right, otherwise the beach and a rum. The island runs on Caribbean time and the first night is for adjusting to it." },

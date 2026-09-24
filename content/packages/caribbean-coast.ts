@@ -12,6 +12,7 @@ export const caribbeanCoast: Package = {
   featured: false,
   heroImage: "/packages/caribbean-coast/hero.jpg",
   gallery: [],
+  teaser: "Follow Colombia's northern coast to the desert, far beyond the usual Cartagena route.",
   summary: "The full length of Colombia's northern coast, ending in the desert where the continent runs out. This is the trip for people who've already done Cartagena and want the version with far fewer other Americans in it.",
   itinerary: [
     { day: 1, title: "Arrival in Santa Marta — the centre after dark", body: "Private transfer from the airport, then the historic centre in the evening — Parque de los Novios, street food, and the coast's own rhythm, which is slower than Cartagena's and better for it." },

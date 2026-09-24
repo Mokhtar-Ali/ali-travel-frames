@@ -4,19 +4,22 @@ export default function NotFound() {
   return (
     <section className="page-section bg-paper text-ink">
       <div className="section-inner">
-      <p className="eyebrow">404</p>
-      <h1 className="display-title mt-5 max-w-[12ch]">
-        This page is not in the frame
-      </h1>
-      <p className="mt-7 max-w-[52ch]">
-        The page may have moved, or the route may not exist yet.
-      </p>
-      <ButtonLink
-        href="/"
-        className="mt-10"
-      >
-        Return home
-      </ButtonLink>
+        <p className="eyebrow">404</p>
+        <h1 className="display-title mt-5 max-w-[12ch]">
+          This page is not in the frame
+        </h1>
+        <p className="mt-7 max-w-[52ch]">
+          The page may have moved, or the route may not exist yet.
+        </p>
+        <div className="not-found-actions mt-10">
+          <ButtonLink href="/">Return home</ButtonLink>
+          <ButtonLink href="/packages" variant="quiet">
+            See the journeys
+          </ButtonLink>
+          <ButtonLink href="/plan" variant="quiet">
+            Plan a trip
+          </ButtonLink>
+        </div>
       </div>
     </section>
   );

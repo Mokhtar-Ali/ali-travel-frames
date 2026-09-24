@@ -1,6 +1,6 @@
 export const reviews = [
   {
-    name: "Marwa Rezk",
+    name: "Marwa Rezq",
     trip: "VIP Colombia Travel Package",
     avatar: "/reviews/marwa.jpg",
     text: "Highly recommended as a female solo traveler. Ali made the trip planning to multiple cities a breeze. I felt like a VIP guest the second I was picked up from the airport. My accommodations were beautiful and very safe. The tour guide was fantastic.",

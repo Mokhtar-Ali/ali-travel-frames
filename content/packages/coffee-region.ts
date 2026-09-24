@@ -12,6 +12,7 @@ export const coffeeRegion: Package = {
   featured: true,
   heroImage: "/packages/coffee-region/hero.jpg",
   gallery: [],
+  teaser: "Green, unhurried coffee country with working farms, wax palms, and painted towns.",
   summary: "Green, slow, and the part of Colombia that surprises Americans most. You are on farms rather than in cities, the Cocora Valley has the tallest palms in the world, and the towns — Salento, Filandia — are the painted-balcony Colombia people picture before they arrive.",
   itinerary: [
     { day: 1, title: "Arrival in the Coffee Region — Salento at night", body: "Fly into Pereira or Armenia, both short hops from Bogotá or Medellín. Private transfer to Salento, about an hour. Evening on Calle Real once the day-trippers have gone: trout for dinner, then a game of tejo — the national sport, played with gunpowder, and the fastest way to end up drinking with locals on your first night." },

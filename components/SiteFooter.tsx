@@ -3,15 +3,13 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SITE_NAME } from "@/lib/seo";
 
 const tripLinks = [
-  { label: "Colombia", href: "/#regions" },
-  { label: "Packages", href: "/packages" },
-  { label: "Guide", href: "/#guide" },
+  { label: "Colombia", href: "/packages" },
+  { label: "Egypt", href: "/egypt" },
 ];
 
 const companyLinks = [
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
-  { label: "Contact", href: "/contact" },
 ];
 
 const phoneLabel = "+1 (917) 780-9875";
@@ -20,7 +18,7 @@ const phoneHref = "tel:+19177809875";
 const socials = [
   { label: "Instagram", href: "https://www.instagram.com/" },
   { label: "TikTok", href: "https://www.tiktok.com/" },
-  { label: "YouTube", href: "https://www.youtube.com/" },
+  { label: "YouTube", href: "https://www.youtube.com/@alitravelframes" },
 ];
 
 export function SiteFooter() {
@@ -36,8 +34,8 @@ export function SiteFooter() {
               {SITE_NAME}
             </Link>
             <p className="mt-4 max-w-sm text-base leading-7">
-              Private Colombia travel planning with boutique hotels, trusted
-              local guides, and thoughtful pacing from start to finish.
+              Private travel planning in Colombia and Egypt with trusted local
+              guides and thoughtful pacing from start to finish.
             </p>
             <p className="mt-5 text-sm font-medium">
               US phone:{" "}
@@ -51,11 +49,10 @@ export function SiteFooter() {
           <FooterLinkColumn title="Company" links={companyLinks} />
 
           <div>
-            <p className="footer-column-title">
-              Start with Colombia
-            </p>
+            <p className="footer-column-title">Start planning</p>
             <p className="mt-3 small-text">
-              We will map the right Colombia route before any planning begins.
+              Tell me which country you have in mind and the rough shape of the
+              trip.
             </p>
             <ButtonLink href="/plan" className="mt-5 w-full sm:w-fit">
               Plan a trip
@@ -75,12 +72,8 @@ export function SiteFooter() {
           </div>
         </div>
         <div className="footer-bottom mt-12">
-          <div>
-            <p>Website by Cleopatra Solutions</p>
-            <p className="mt-2">
-              Copyright 2026 {SITE_NAME}. All rights reserved.
-            </p>
-          </div>
+          <p>Copyright 2026 {SITE_NAME}. All rights reserved.</p>
+          <p>Website by Cleopatra Solutions</p>
         </div>
       </div>
     </footer>

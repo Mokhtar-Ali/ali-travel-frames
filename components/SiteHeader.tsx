@@ -7,9 +7,8 @@ import { useState } from "react";
 import { ButtonLink } from "@/components/ui/Button";
 
 const navItems = [
-  { label: "Colombia", href: "/#regions" },
-  { label: "Packages", href: "/packages" },
-  { label: "Guides", href: "/#guide" },
+  { label: "Colombia", href: "/packages" },
+  { label: "Egypt", href: "/egypt" },
   { label: "About", href: "/about" },
   { label: "Reviews", href: "/reviews" },
 ];
@@ -32,7 +31,7 @@ export function SiteHeader() {
             width={168}
             height={112}
             loading="lazy"
-            className="h-11 w-auto min-[900px]:h-14"
+            className="site-logo"
           />
         </Link>
         <nav
@@ -44,7 +43,7 @@ export function SiteHeader() {
           ))}
         </nav>
         <ButtonLink href="/plan" className="site-header-cta">
-          Book a free call
+          Plan a trip
         </ButtonLink>
         <button
           className="site-menu-toggle"
@@ -75,7 +74,7 @@ export function SiteHeader() {
           className="mt-2 w-full"
           onClick={() => setIsMenuOpen(false)}
         >
-          Book a free call
+          Plan a trip
         </ButtonLink>
       </div>
     </header>

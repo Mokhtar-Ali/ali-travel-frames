@@ -12,6 +12,7 @@ export const colombiaHighlights: Package = {
   featured: true,
   heroImage: "/packages/colombia-highlights/hero.jpg",
   gallery: [],
+  teaser: "Three regions with time to know the city, coffee country, and Caribbean coast.",
   summary: "The complete trip. Three regions, each with enough time to stop feeling like a tour — a real city, real coffee country, and the Caribbean. Twelve days is the point where Colombia stops being a highlights reel and starts being a country you know something about.",
   itinerary: [
     { day: 1, title: "Arrival in Medellín — the city at night", body: "Private transfer from the airport. Evening: the 360 miradores run, the valley lit from every side. It asks nothing of you after a long flight and it orients you completely." },

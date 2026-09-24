@@ -12,6 +12,7 @@ export const medellinGuatape: Package = {
   featured: true,
   heroImage: "/packages/medellin-guatape/hero.jpg",
   gallery: [],
+  teaser: "A first Colombia trip pairing Medellín's energy with two slow nights at Guatapé.",
   summary: "The best introduction to Colombia for a first trip. Medellín is the easiest city in the country to land in — mild weather all year, a metro that works, and neighbourhoods you can walk. You get the city properly with a private guide, then two nights out at Guatapé where the lake country looks like nowhere else in South America.",
   itinerary: [
     { day: 1, title: "Arrival in Medellín — the city at night", body: "Private transfer from José María Córdova airport, about 45 minutes down into the valley. In the evening, the 360 miradores run: Medellín from every side after dark, when the whole valley lights up and you finally understand the shape of the place. It is the right first night — nothing strenuous, no early start, and it makes sense of everything you see over the following days. Landing late? We move it to another evening." },

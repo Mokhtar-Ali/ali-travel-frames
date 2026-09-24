@@ -12,6 +12,7 @@ export const medellinCoffeeRegion: Package = {
   featured: true,
   heroImage: "/packages/medellin-coffee-region/hero.jpg",
   gallery: [],
+  teaser: "Medellín's city energy meets the green, unhurried counterweight of coffee country.",
   summary: "The two regions that pair best. Medellín gives you a real city with a difficult, fascinating recent history; the coffee region gives you the green, slow counterweight an hour's flight south. Nine days is the shortest trip where neither half feels rushed.",
   itinerary: [
     { day: 1, title: "Arrival in Medellín — the city at night", body: "Private transfer from the airport, roughly 45 minutes. Evening: the 360 miradores run, Medellín lit up from every side of the valley. Low effort after a long flight and the best possible orientation to a city built on a slope." },
