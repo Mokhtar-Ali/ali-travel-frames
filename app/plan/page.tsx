@@ -11,9 +11,9 @@ const calendlyUrl =
   "https://calendly.com/mail-alitravelframes/30min?background_color=FBFAF7&text_color=0B1220&primary_color=4B0B63";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Book a free 15-minute call",
+  title: "Plan Your Colombia or Egypt Trip | Ali Travel Frames",
   description:
-    "Book a call or send Ali Travel Frames the details for a private Colombia or Egypt trip.",
+    "Discuss your private Colombia or Egypt journey with Ali Travel Frames on WhatsApp, or choose a time to talk through your trip.",
   path: "/plan",
   noIndex: false,
 });

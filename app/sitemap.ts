@@ -3,7 +3,6 @@ import { getAllPackageSlugs } from "@/content/packages/index";
 import { SITE_URL } from "@/lib/seo";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
   const routes = [
     "/",
     "/colombia",
@@ -16,7 +15,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   return routes.map((route) => ({
-    url: `${SITE_URL}${route}`,
-    lastModified: now,
+    url: `${SITE_URL}${route === "/" ? "" : route}`,
   }));
 }

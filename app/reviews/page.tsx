@@ -6,7 +6,7 @@ import { buildMetadata } from "@/lib/seo";
 
 export function generateMetadata(): Metadata {
   return buildMetadata({
-    title: "Traveller Reviews",
+    title: "Colombia & Egypt Traveller Reviews | Ali Travel Frames",
     description:
       "Read Ali Travel Frames traveller reviews from private Colombia and Egypt trips.",
     path: "/reviews",

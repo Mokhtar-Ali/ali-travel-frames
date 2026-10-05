@@ -4,9 +4,9 @@ import { colombiaPackages, egyptPackages } from "@/content/packages";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Colombia & Egypt Journeys | Ali Travel Frames",
+  title: "Colombia Packages & Egypt Travel Planning | Ali Travel Frames",
   description:
-    "Browse private journeys in Colombia and Egypt from Ali Travel Frames.",
+    "Browse published private Colombia journeys and discuss a tailor-made Egypt trip with Ali Travel Frames. Shape the pace, hotels, and guides around you.",
   path: "/packages",
 });
 

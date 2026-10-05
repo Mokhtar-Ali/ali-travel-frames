@@ -5,9 +5,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import {
-  buildMetadata,
   SITE_DESCRIPTION,
   SITE_NAME,
+  SITE_URL,
 } from "@/lib/seo";
 import "./globals.css";
 
@@ -25,11 +25,11 @@ const fraunces = Fraunces({
   display: "swap",
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: "Ali Travel Frames | Private Colombia & Egypt Travel Planning",
+export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  title: SITE_NAME,
   description: SITE_DESCRIPTION,
-  path: "/",
-});
+};
 
 export const viewport: Viewport = {
   colorScheme: "light",
@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     "@context": "https://schema.org",
     "@type": "TravelAgency",
     name: SITE_NAME,
-    url: "https://alitravelframes.com",
+    url: SITE_URL,
     description: SITE_DESCRIPTION,
     telephone: "+19177809875",
     areaServed: ["Colombia", "Egypt"],

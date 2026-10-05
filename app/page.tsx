@@ -12,7 +12,7 @@ import { colombiaPackages, egyptPackages } from "@/content/packages";
 import type { Package } from "@/content/types";
 import { heroSlides } from "@/content/site";
 import { publicAssetExists } from "@/lib/public-assets";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, SITE_DESCRIPTION } from "@/lib/seo";
 
 const companyIntroduction = [
   "At Ali Travel Frames, we bring together VIP travel planning, personal concierge service, and trusted local expertise to shape journeys around you. From private Egypt tours to tailor-made Colombia travel packages, we plan the stays, guides, transfers, and experiences that make each trip feel personal.",
@@ -22,7 +22,7 @@ const companyIntroduction = [
 
 export const metadata: Metadata = buildMetadata({
   title: "Ali Travel Frames | Private Colombia & Egypt Travel Planning",
-  description: "Private travel planning for Colombia and Egypt",
+  description: SITE_DESCRIPTION,
   path: "/",
 });
 

@@ -10,7 +10,7 @@ import {
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "The American who lives there",
+  title: "About Ali, Your Colombia & Egypt Travel Planner | Ali Travel Frames",
   description:
     "Meet Ali, the American travel planner behind private trips in Colombia and Egypt.",
   path: "/about",
