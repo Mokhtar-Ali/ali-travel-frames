@@ -657,6 +657,7 @@ button:hover .media-scale {
 
 .package-carousel-controls button {
   display: inline-flex;
+  scroll-margin-top: 104px;
   width: 44px;
   height: 44px;
   align-items: center;
@@ -926,6 +927,7 @@ button:hover .media-scale {
   position: relative;
   isolation: isolate;
   display: block;
+  width: 100%;
   min-width: 0;
   aspect-ratio: 3 / 4;
   min-height: 380px;
@@ -1823,6 +1825,11 @@ fieldset.plan-field {
 }
 
 @media (max-width: 680px) {
+  [aria-labelledby="plan-contact-title"] .btn-primary {
+    max-width: calc(100% - 76px);
+    text-align: center;
+  }
+
   .journeys-grid,
   .country-package-grid,
   .country-reviews-grid,

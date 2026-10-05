@@ -169,7 +169,8 @@ rendering, and runtime failure with the original fields and reusable entered
 values retained. The form component, API validation and API 503 behavior were
 preserved without edits in this follow-up.
 
-Browser tooling was unavailable: no callable in-app browser execution tool,
+At the time of the original correction and WhatsApp-first batches, browser
+tooling was unavailable: no callable in-app browser execution tool,
 agent-browser CLI, Playwright, Puppeteer, DOM test environment or React test
 renderer. No dependencies were installed. Desktop/mobile visual and interaction
 checks remain **unverified**. Real persistence and downstream delivery remain
@@ -252,3 +253,179 @@ environment exists. Do not enable a production backend to perform that check.
 
 No dependencies, CMS records, production configuration, pushes or deployments
 were changed.
+
+## Browser Smoke-Test Follow-Up: 2026-10-05
+
+Started from committed `43fd6ad` on `main` with a clean worktree in
+`alitravelframes-front-end`. That commit was not amended or recreated. This
+follow-up has not been committed, pushed or deployed.
+
+### Setup and Safety
+
+- Existing environment: npm lockfile, Node `v24.14.0`, npm `11.9.0`.
+- No browser framework was installed. Added development dependency
+  `@playwright/test@1.63.0` (requires Node >=20), with matching `playwright` and
+  `playwright-core` transitive packages. Next.js, React and unrelated package
+  versions were not changed. Existing scripts and 25 Node tests were preserved.
+- With explicit installation/network approvals, ran
+  `npm install --save-dev --save-exact @playwright/test@1.63.0` and
+  `npx --no-install playwright install chromium`. Chromium artifacts are in the
+  user's Playwright cache, not the repository. No examples or application pages
+  were generated.
+- `playwright.config.ts` runs a locally served production build at
+  `http://127.0.0.1:3210`, with one worker and no retries. Set `E2E_PORT` to
+  another available port if necessary. The runner refuses to reuse an existing
+  server and shuts down only its own server after testing.
+- The initial sandboxed run failed with
+  `listen EPERM: operation not permitted 127.0.0.1:3210`. The explicitly approved
+  retry successfully served the application and launched Chromium. This was an
+  environment restriction, not an application defect.
+- Browser-context interception prevents external requests, including analytics,
+  Calendly and contact destinations. External navigation receives a local test
+  document at the requested URL. Every test fails on an attempted inquiry POST
+  or an application JavaScript error. No inquiries, messages, emails or bookings
+  were sent. Third-party booking functionality is not covered.
+- Reports, screenshots and traces are ignored by Git and lint. HTML and JSON
+  reports are generated; failure traces are retained without automatic retries.
+  Configuration follows the installed Next.js Playwright guide and
+  [Playwright webServer documentation](https://playwright.dev/docs/test-webserver).
+
+### Confirmed Defects and Minimal Corrections
+
+| Defect | Reproduction and observed behavior | Correction and verification |
+| --- | --- | --- |
+| Medium: Colombia region cards overlap and cause tablet horizontal overflow | Open `/colombia` at 768 x 1024. Aspect ratio plus 380px minimum height expanded cards to 285px despite narrower grid columns. The third card extended to x=797.42, producing 29px document overflow. | Added `width: 100%` to `.region-card` in `app/globals.css`. Preserved the grid, minimum height and content. Tests check document bounds and neighboring cards in the same row across all four viewports. |
+| Medium: mobile planning contact controls overlap | Open `/plan?c=colombia&package=medellin-guatape` at 390 x 844 and scroll the primary WhatsApp action alongside the floating contact control. Their bounding rectangles intersected by 2,900 square pixels; screenshot confirmed the overlap. | Limited the unavailable-state primary action's mobile width to reserve the existing 76px floating-control gutter. Copy, colors, floating link and desktop styling remain. Regression places both controls at the same vertical position and requires zero overlap. |
+| Medium: focused carousel arrow is obscured in a short viewport | At 1440 x 600, reach the homepage carousel with keyboard focus, Tab to the track and Shift+Tab back to the next arrow. Its outline existed, but the control was behind the sticky header. | Added 104px scroll margin to carousel control buttons. Keyboard regression requires focus-visible styling and verifies the focused control is the actual onscreen hit target, including the short viewport. |
+
+Initial test-only failures were also corrected without changing application
+behavior: planning alerts are now scoped to `main` to exclude Next.js's route
+announcer; reverse carousel navigation is tested before leaving the page rather
+than assuming history restores the carousel; each navigation step waits for
+scroll controls to reflect the completed browser scroll. Reachability and
+overflow assertions were retained, not relaxed.
+
+### Actual Final Results
+
+Engine: headless Chromium **153.0.8010.12**, recorded by the running browser in
+76 per-test coverage attachments. Viewports: desktop **1440 x 900**, mobile
+**390 x 844** (mobile/touch emulation), tablet **768 x 1024** (touch emulation),
+and short desktop **1440 x 600**. This is not physical-device or cross-browser
+coverage.
+
+| Command | Final result |
+| --- | --- |
+| `npm test` | 25 passed, 0 failed; existing controlled tests remain distinct from delivery verification |
+| `npm run lint` | Passed without autofix, including browser tests and excluding generated artifacts |
+| `npx --no-install tsc --noEmit` | Passed |
+| `npm run build` | Passed; unchanged 10 public package-detail routes prerendered |
+| `npm run test:e2e` | 76 passed, 0 failed, 0 skipped, 0 flaky, no retries; 33.9 seconds |
+| JSON coverage summary | 76 records, zero application JavaScript errors, zero inquiry POSTs |
+| `git diff --check` | Passed |
+
+Verified in the actual browser:
+
+- Desktop navigation and mobile/tablet menus; keyboard-operated links and
+  carousel controls with visible, unobscured focus.
+- All 10 Colombia packages reachable through homepage carousel controls,
+  forward and backward endpoints, and first/last package detail navigation.
+  Homepage carousel and Colombia destination grid links match registry order.
+  `/colombia` has a grid, not a separate carousel.
+- `/packages/medellin-guatape` inquiry CTA carries canonical slug/destination to
+  `/plan`; the actual selected name and Colombia remain visible.
+- General, Egypt, Colombia and package-only planning; unknown, malformed,
+  duplicate and mismatched selections. Reset and destination-correction links
+  actually navigate to a state without the selection error. Unavailable-state
+  entry fields and submit controls are absent.
+- WhatsApp's configured target `https://wa.me/19177809875` and keyboard
+  navigation under interception. No submitted/delivered inquiry confirmation.
+  This proves the site's link behavior, not a real WhatsApp application handoff.
+- Footer credit on `/`, `/colombia`, `/egypt`, the selected package and `/plan`:
+  correct URL, `_blank`, `noopener noreferrer`, keyboard activation, a new
+  intercepted browsing context and `window.opener === null`.
+- Five absent-media Egypt fallbacks, stable 3:2 experience frames, retained
+  headings/copy and no requests for known missing Egypt images. The real
+  slideshow visits Cairo, Giza, Luxor and Aswan using controlled browser time,
+  retaining original copy and fallbacks without source/component mocks.
+- A deliberate browser image-request failure exercises the shared country hero
+  on `/colombia`: actual image error swaps to a fallback without changing frame
+  height or removing heading/subtitle. Egypt's missing images cannot exercise
+  a failed-image request because they are correctly omitted at source.
+- Purple-and-white destination bands retain existing 48px desktop, 32px tablet
+  and 24px mobile section padding. Checked routes/carousel interactions do not
+  introduce document-level horizontal overflow.
+
+### Screenshots and Reproduction
+
+Representative screenshots were captured and inspected for destination-section
+transitions, first/last carousel states, Egypt hero/experience fallbacks,
+general/selected planning, mobile/tablet menus, corrected region columns and
+mobile contact controls, plus short-desktop focus clearance. Text wraps and
+media frames remain intact in those inspected states; this is not exhaustive
+visual coverage of every scroll position.
+
+Generated locations, all ignored by Git:
+
+- `playwright-report/index.html`: browser results and per-test coverage.
+- `test-results/results.json`: machine-readable final results and attachments.
+- `test-results/journey-*/`: screenshots, organized by test and viewport.
+- Screenshot names include `homepage-destination-transition.png`,
+  `colombia-carousel-first.png`, `colombia-carousel-last.png`,
+  `egypt-hero-fallback.png`, `egypt-experience-fallbacks.png`,
+  `plan-general-contact.png`, `plan-selected-contact.png`,
+  `plan-contact-controls.png`, `colombia-regions.png` and
+  `navigation-colombia.png`. Run `rg --files test-results -g '*.png'` for exact
+  paths. Subsequent runs replace the generated report and screenshots.
+
+Reproduce without live delivery:
+
+```sh
+npm test
+npm run lint
+npx --no-install tsc --noEmit
+npm run build
+npm run test:e2e
+```
+
+If port 3210 is occupied, use `E2E_PORT=3211 npm run test:e2e` after confirming
+that port is available. Do not stop an unrelated process. For manual inspection,
+serve the built application with
+`npm run start -- --hostname 127.0.0.1 --port 3210` when the test server is stopped.
+
+### Remaining Blockers and Unverified Checks
+
+- Egypt still has **zero approved package records**. This is a content blocker,
+  not completed Egypt package-carousel verification. No experiences were
+  relabeled, packages invented or assets added. Missing original photographs
+  remain optional enhancements; approved actual records remain required.
+- No implemented lead backend, persistence or downstream delivery exists.
+  Existing mocked acceptance/failure tests do not establish live delivery or
+  configured-backend browser behavior.
+- Real external WhatsApp handoff, Cleopatra's external page and Calendly loading
+  were deliberately not verified. Intercepted navigation is not external-service
+  success. No cross-browser or physical-device coverage.
+- Manual **200% browser zoom remains unverified**: no interactive browser chrome
+  was available to perform that check. Viewport emulation and controlled browser
+  time are not browser zoom. Manual steps: start the production preview above;
+  open `/`, `/colombia`, `/egypt` and both general/selected `/plan` in Chrome;
+  set the browser's menu Zoom value to 200%; Tab through navigation/carousel and
+  contact actions; inspect wrapping, header obstruction and horizontal overflow;
+  do not submit forms or send messages; restore Zoom to 100% afterward.
+- Additional observation outside the requested Egypt-media checks: `/about`
+  references missing `/brand/ali.jpg` at `app/about/page.tsx:28`; the production
+  image optimizer repeatedly reports an invalid image. Navigation itself passed,
+  but that portrait is unresolved. No replacement photograph was invented.
+- Installation reported seven dependency vulnerabilities (six high, one
+  critical). No audit autofix or unrelated upgrades were run; advisory
+  remediation was not assessed in this focused UI pass.
+
+### Files Changed in This Follow-Up
+
+- `.gitignore`, `eslint.config.mjs`: ignore generated browser artifacts.
+- `package.json`, `package-lock.json`: development browser dependency and separate
+  `test:e2e` script; no unrelated version changes.
+- `playwright.config.ts`: production server, four viewports and reporters.
+- `tests/e2e/fixtures.ts`: side-effect interception, diagnostics and browser assertions.
+- `tests/e2e/journey.spec.ts`: focused journey, layout and media regressions.
+- `app/globals.css`: only the three reproduced corrections described above.
+- `docs/correction-batch.md`: substantive verification and remaining limits.
