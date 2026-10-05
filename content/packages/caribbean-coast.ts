@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const caribbeanCoast: Package = {
   slug: "caribbean-coast",
+  country: "colombia",
   name: "Caribbean Coast: Santa Marta, Palomino & La Guajira",
   title: "Colombia's Caribbean Coast: Santa Marta, Tayrona, Palomino & La Guajira",
   metaDescription: "Nine nights along Colombia's Caribbean coast — Minca cloud forest, Tayrona, the Palomino river, and the desert of La Guajira. From $5,200 per person.",

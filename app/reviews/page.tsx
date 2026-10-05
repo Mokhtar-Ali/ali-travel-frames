@@ -8,7 +8,7 @@ export function generateMetadata(): Metadata {
   return buildMetadata({
     title: "Traveller Reviews",
     description:
-      "Read Ali Travel Frames traveller reviews from private Colombia trips and custom planning clients.",
+      "Read Ali Travel Frames traveller reviews from private Colombia and Egypt trips.",
     path: "/reviews",
   });
 }

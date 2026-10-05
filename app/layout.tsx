@@ -26,10 +26,9 @@ const fraunces = Fraunces({
 });
 
 export const metadata: Metadata = buildMetadata({
-  title: SITE_NAME,
+  title: "Ali Travel Frames | Private Colombia & Egypt Travel Planning",
   description: SITE_DESCRIPTION,
   path: "/",
-  titleTemplate: true,
 });
 
 export const viewport: Viewport = {
@@ -37,12 +36,28 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
+  const travelAgencyJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    name: SITE_NAME,
+    url: "https://alitravelframes.com",
+    description: SITE_DESCRIPTION,
+    telephone: "+19177809875",
+    areaServed: ["Colombia", "Egypt"],
+  };
+
   return (
     <html
       lang="en"
       className={`${inter.variable} ${fraunces.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(travelAgencyJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
         <a className="skip-link" href="#main-content">
           Skip to content
         </a>

@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const sanAndresProvidencia: Package = {
   slug: "san-andres-providencia",
+  country: "colombia",
   name: "San Andrés & Providencia",
   title: "San Andrés & Providencia: Colombia's Caribbean Islands",
   metaDescription: "Eight nights across San Andrés and Providencia — the sea of seven colours, Santa Catalina, diving, and the quietest island in the Colombian Caribbean. From $4,900 per person.",

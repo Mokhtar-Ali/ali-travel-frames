@@ -9,8 +9,9 @@ import { medellinCartagena } from './medellin-cartagena';
 import { sanAndresProvidencia } from './san-andres-providencia';
 import { caribbeanCoast } from './caribbean-coast';
 import { colombiaHighlights } from './colombia-highlights';
+import { egyptPackages } from './egypt';
 
-export const packages: Package[] = [
+export const colombiaPackages: Package[] = [
   medellinGuatape,
   coffeeRegion,
   cartagenaRosario,
@@ -23,16 +24,29 @@ export const packages: Package[] = [
   colombiaHighlights,
 ];
 
+export { egyptPackages };
+
+export const allPackages: Package[] = [
+  ...colombiaPackages,
+  ...egyptPackages,
+];
+
 export const getPackage = (slug: string): Package | undefined =>
-  packages.find((p) => p.slug === slug);
+  allPackages.find((travelPackage) => travelPackage.slug === slug);
 
 export const getPackageBySlug = getPackage;
 
-export const getAllPackages = (): Package[] => packages;
+export const getAllPackages = (): Package[] => allPackages;
 
-export const getAllPackageSlugs = (): string[] => packages.map((p) => p.slug);
+export const getAllPackageSlugs = (): string[] =>
+  allPackages.map((travelPackage) => travelPackage.slug);
 
-export const getFeaturedPackages = (): Package[] =>
-  packages.filter((p) => p.featured);
+export const getFeaturedPackages = (
+  country: Package["country"],
+): Package[] =>
+  allPackages.filter(
+    (travelPackage) =>
+      travelPackage.country === country && travelPackage.featured,
+  );
 
 export type { Package } from '../types';

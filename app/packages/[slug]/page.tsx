@@ -51,6 +51,9 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
   }
 
   const hasHeroImage = publicAssetExists(travelPackage.heroImage);
+  const countryName =
+    travelPackage.country === "egypt" ? "Egypt" : "Colombia";
+  const planHref = `/plan?c=${travelPackage.country}&package=${travelPackage.slug}`;
 
   return (
     <article className="bg-paper">
@@ -99,9 +102,9 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
             {travelPackage.summary}
           </p>
           <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href="/plan">Book a free 15-minute call</ButtonLink>
+            <ButtonLink href={planHref}>Book a free 15-minute call</ButtonLink>
             <ButtonLink
-              href={`/plan?package=${travelPackage.slug}`}
+              href={planHref}
               variant={hasHeroImage ? "ghostGlass" : "quiet"}
             >
               Customise this trip
@@ -144,7 +147,7 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
             <ul className="mt-10 grid gap-4">
               {travelPackage.included.map((item) => (
                 <li key={item} className="flex gap-4">
-                  <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-emerald" />
+                  <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-success" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -155,7 +158,7 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
             <ul className="mt-10 grid gap-4">
               {travelPackage.excluded.map((item) => (
                 <li key={item} className="flex gap-4">
-                  <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-gold" />
+                  <span className="mt-3 h-1.5 w-1.5 shrink-0 bg-warning" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -196,14 +199,14 @@ export default async function PackageDetailPage({ params }: PackagePageProps) {
         <div className="section-inner text-center">
           <p className="eyebrow">Ready to shape it around you?</p>
           <h2 className="section-title mx-auto mt-4 max-w-[16ch]">
-            Turn {travelPackage.name} into your private Colombia plan
+            Turn {travelPackage.name} into your private {countryName} plan
           </h2>
           <p className="mx-auto mt-6 max-w-[52ch]">
             We will tune pace, hotels, guiding style, and add-on moments before
             anything is confirmed.
           </p>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <ButtonLink href={`/plan?package=${travelPackage.slug}`}>
+            <ButtonLink href={planHref}>
               Customise this trip
             </ButtonLink>
             <ButtonLink href="/packages" variant="quiet">

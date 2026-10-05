@@ -17,7 +17,7 @@ export function PackageCard({ travelPackage }: PackageCardProps) {
         <div className="media-frame aspect-[4/5] bg-sand">
           <Image
             src={`/packages/${travelPackage.slug}/hero.jpg`}
-            alt={`${travelPackage.name} in Colombia`}
+            alt={`${travelPackage.name} in ${travelPackage.country === "egypt" ? "Egypt" : "Colombia"}`}
             width={600}
             height={750}
             loading="lazy"

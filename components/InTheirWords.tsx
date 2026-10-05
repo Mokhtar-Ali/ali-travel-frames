@@ -7,19 +7,20 @@ import { ButtonLink } from "@/components/ui/Button";
 import { reviews } from "@/lib/reviews";
 
 const mediaQuery = "(prefers-reduced-motion: reduce)";
-const colombiaReviewNames = new Set([
+const homepageReviewNames = new Set([
   "Marwa Rezq",
   "Harryele Eugene",
   "Adam",
   "Josh Wallace",
   "Juan Valencia",
+  "Jorge Rodriguez",
 ]);
 
 const carouselReviews = reviews
-  .filter((review) => colombiaReviewNames.has(review.name))
+  .filter((review) => homepageReviewNames.has(review.name))
   .map((review) => ({
     ...review,
-    text: trimToSentences(review.text, 2),
+    text: review.homepageExcerpt ?? trimToSentences(review.text, 2),
   }));
 
 function trimToSentences(text: string, sentenceCount: number) {
@@ -111,7 +112,7 @@ export function InTheirWords() {
       >
         <p className="eyebrow">In their words</p>
         <h2 className="section-title mx-auto mt-4 max-w-[12ch]">
-          Notes from Colombia
+          Reviews
         </h2>
         <div className="reviews-carousel mt-10">
           <div className="reviews-carousel-frame">
@@ -123,7 +124,7 @@ export function InTheirWords() {
                 data-active={activeIndex === index}
               >
                 <p className="testimonial-quote">&ldquo;{review.text}&rdquo;</p>
-                <div className="mt-8 grid justify-items-center">
+                <div className="review-attribution grid justify-items-center">
                   <Image
                     src={review.avatar}
                     alt={review.name}

@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const medellinCartagena: Package = {
   slug: "medellin-cartagena",
+  country: "colombia",
   name: "Medellín & Cartagena",
   title: "Medellín & Cartagena: Colombia's Two Essential Cities in 8 Nights",
   metaDescription: "Eight nights across Medellín and Cartagena — Comuna 13, Guatapé, the walled city and the Rosario Islands, all with private guides. From $4,800 per person.",

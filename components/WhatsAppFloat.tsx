@@ -1,7 +1,7 @@
 "use client";
 
 const whatsappMessage =
-  "Hi Ali Travel Frames, I would like help planning a private Colombia trip.";
+  "Hi Ali Travel Frames, I would like help planning a private trip to Colombia or Egypt.";
 
 type Gtag = (
   command: "event",

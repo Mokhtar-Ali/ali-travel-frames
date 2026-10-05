@@ -3,7 +3,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { SITE_NAME } from "@/lib/seo";
 
 const tripLinks = [
-  { label: "Colombia", href: "/packages" },
+  { label: "Colombia", href: "/colombia" },
   { label: "Egypt", href: "/egypt" },
 ];
 
@@ -55,7 +55,7 @@ export function SiteFooter() {
               trip.
             </p>
             <ButtonLink href="/plan" className="mt-5 w-full sm:w-fit">
-              Plan a trip
+              Book a call
             </ButtonLink>
             <div className="mt-7 flex gap-6">
               {socials.map((social) => (
@@ -73,7 +73,15 @@ export function SiteFooter() {
         </div>
         <div className="footer-bottom mt-12">
           <p>Copyright 2026 {SITE_NAME}. All rights reserved.</p>
-          <p>Website by Cleopatra Solutions</p>
+          <a
+            href="https://cleopatrasolutions.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="footer-credit-link"
+          >
+            Website by Cleopatra Solutions
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
         </div>
       </div>
     </footer>

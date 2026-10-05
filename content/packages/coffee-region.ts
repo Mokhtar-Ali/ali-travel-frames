@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const coffeeRegion: Package = {
   slug: "coffee-region",
+  country: "colombia",
   name: "Coffee Region: Salento, Cocora & the Farms",
   title: "Colombia Coffee Region: Salento, Cocora Valley & Coffee Farms",
   metaDescription: "Five nights in Colombia's coffee country — Salento, the Cocora Valley wax palms, private coffee and chocolate farms, and the Santa Rosa hot springs. From $3,200 per person.",

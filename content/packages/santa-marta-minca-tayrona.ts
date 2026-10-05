@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const santaMartaMincaTayrona: Package = {
   slug: "santa-marta-minca-tayrona",
+  country: "colombia",
   name: "Santa Marta, Minca & Tayrona",
   title: "Santa Marta, Minca & Tayrona: Mountains, Jungle & Caribbean Coast",
   metaDescription: "Six nights across Santa Marta, the Minca cloud forest and Tayrona National Park — beaches, waterfalls, coffee in the mountains. From $3,700 per person.",

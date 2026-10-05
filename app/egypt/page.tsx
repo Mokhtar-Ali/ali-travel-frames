@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { CountryHero } from "@/components/CountryHero";
+import { CountryReviews } from "@/components/CountryReviews";
 import { Invitation } from "@/components/Invitation";
-import { ButtonLink } from "@/components/ui/Button";
-import { reviews } from "@/lib/reviews";
+import { PackageGrid } from "@/components/PackageGrid";
+import { egyptPackages } from "@/content/packages";
 import { buildMetadata } from "@/lib/seo";
 
 const experiences = [
@@ -32,54 +34,29 @@ const experiences = [
   },
 ];
 
-const jorgeReview = reviews.find(
-  (review) => review.name === "Jorge Rodriguez",
-);
-
 export const metadata: Metadata = buildMetadata({
-  title: "Private Egypt Travel Planning",
+  title: "Egypt Travel Planning | Ali Travel Frames",
   description:
-    "Private Egypt trips planned first-hand, from Cairo and the Nile to the Red Sea.",
+    "Private Egypt travel planning from Cairo and the Nile to the Red Sea.",
   path: "/egypt",
-  image: "/egypt/hero.jpg",
+  image: "/egypt/hero-1.jpg",
   imageAlt: "Egypt",
 });
 
 export default function EgyptPage() {
-  if (!jorgeReview) {
-    throw new Error("The Egypt testimonial is missing.");
-  }
-
   return (
     <div className="bg-paper">
-      <section className="egypt-hero">
-        {/* TODO: Add the Egypt hero image at /public/egypt/hero.jpg. */}
-        <Image
-          src="/egypt/hero.jpg"
-          alt="Egypt"
-          width={2400}
-          height={1500}
-          sizes="100vw"
-          priority
-          className="egypt-hero-image"
-        />
-        <div className="hero-scrim" />
-        <div className="section-inner egypt-hero-content">
-          <h1 className="display-title hero-title">
-            Egypt, the second country I know properly
-          </h1>
-          <p className="hero-subtitle">
-            Private routes shaped with first-hand judgment and people I trust.
-          </p>
-          <ButtonLink href="/plan?c=egypt" className="mt-8">
-            Plan an Egypt trip
-          </ButtonLink>
-        </div>
-      </section>
+      {/* TODO: Add the Egypt hero images under /public/egypt/. */}
+      <CountryHero
+        title="Egypt"
+        subtitle="Cairo, the Nile, Upper Egypt, and the Red Sea planned with first-hand judgment."
+        image="/egypt/hero-1.jpg"
+        imageAlt="Egypt"
+      />
 
       <section className="page-section bg-paper">
         <div className="section-inner">
-          <div className="egypt-statement">
+          <div className="country-statement">
             <p className="eyebrow">Why Egypt</p>
             <h2 className="section-title mt-4">
               The only other country on this site
@@ -124,33 +101,17 @@ export default function EgyptPage() {
         </div>
       </section>
 
-      <section className="home-section bg-paper">
-        <div className="section-inner text-center">
-          <p className="eyebrow">In their words</p>
-          <blockquote className="egypt-testimonial mt-10">
-            <p className="testimonial-quote">
-              &ldquo;{jorgeReview.text}&rdquo;
-            </p>
-            <div className="mt-8 grid justify-items-center">
-              <Image
-                src={jorgeReview.avatar}
-                alt={jorgeReview.name}
-                width={56}
-                height={56}
-                loading="lazy"
-                className="avatar-round h-14 w-14 object-cover"
-              />
-              <p className="mt-4 text-[15px] font-medium leading-none text-ink">
-                {jorgeReview.name}
-              </p>
-              <p className="mt-2 small-text text-muted">
-                {jorgeReview.trip}
-              </p>
-            </div>
-          </blockquote>
+      <section className="page-section bg-paper">
+        <div className="section-inner">
+          <p className="eyebrow">Journeys</p>
+          <h2 className="section-title mt-4">Egypt journeys</h2>
+          <div className="mt-10">
+            <PackageGrid packages={egyptPackages} />
+          </div>
         </div>
       </section>
 
+      <CountryReviews country="Egypt" />
       <Invitation country="Egypt" href="/plan?c=egypt" />
     </div>
   );

@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const medellinGuatape: Package = {
   slug: "medellin-guatape",
+  country: "colombia",
   name: "Medellín & Guatapé",
   title: "Medellín & Guatapé: 5 Nights of City, Culture & Lake Country",
   metaDescription: "Five nights in Medellín and Guatapé with a private guide — Comuna 13, a working coffee farm, the Guatapé rock and lake country. From $3,200 per person.",

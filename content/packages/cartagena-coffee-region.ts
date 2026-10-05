@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const cartagenaCoffeeRegion: Package = {
   slug: "cartagena-coffee-region",
+  country: "colombia",
   name: "Cartagena & the Coffee Region",
   title: "Cartagena & the Coffee Region: Caribbean Coast to Coffee Country",
   metaDescription: "Eight nights pairing Cartagena's walled city and the Rosario Islands with Colombia's coffee country — Salento, Cocora Valley and working farms. From $4,700 per person.",

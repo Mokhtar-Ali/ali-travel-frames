@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const colombiaHighlights: Package = {
   slug: "colombia-highlights",
+  country: "colombia",
   name: "Colombia Highlights: Medellín, Coffee Region & Cartagena",
   title: "Colombia Highlights: Medellín, Coffee Country & Cartagena in 11 Nights",
   metaDescription: "Eleven nights across Colombia's three essential regions — Medellín and Guatapé, the coffee country and Cocora Valley, and Cartagena's walled city and islands. From $6,400 per person.",

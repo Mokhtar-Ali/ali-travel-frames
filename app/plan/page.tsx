@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
+import Script from "next/script";
 import { PlanLeadForm } from "./PlanLeadForm";
 import { buildMetadata } from "@/lib/seo";
 
-const phoneLabel = "+1 (917) 780-9875";
-const phoneHref = "tel:+19177809875";
+const calendlyUrl =
+  "https://calendly.com/mail-alitravelframes/30min?background_color=FBFAF7&text_color=0B1220&primary_color=4B0B63";
+
 export const metadata: Metadata = buildMetadata({
-  title: "Plan a private trip",
+  title: "Book a free 15-minute call",
   description:
-    "Tell Ali Travel Frames what you have in mind for a private trip to Colombia or Egypt.",
+    "Book a call or send Ali Travel Frames the details for a private Colombia or Egypt trip.",
   path: "/plan",
   noIndex: false,
 });
@@ -22,60 +22,39 @@ export default async function PlanPage({ searchParams }: PlanPageProps) {
   const params = await searchParams;
   const countryParam = Array.isArray(params.c) ? params.c[0] : params.c;
   const initialCountry = countryParam === "egypt" ? "Egypt" : "Colombia";
-  const heroImage =
-    initialCountry === "Egypt" ? "/egypt/hero.jpg" : "/hero/06-santa-marta.jpg";
-  const whatsappHref = `https://wa.me/19177809875?text=${encodeURIComponent(
-    `Hi Ali Travel Frames, I would like help planning a private ${initialCountry} trip.`,
-  )}`;
 
   return (
-    <div className="bg-paper">
-      <section className="plan-hero">
-        <Image
-          src={heroImage}
-          alt={initialCountry === "Egypt" ? "Egypt" : "Santa Marta coastline in Colombia"}
-          width={1800}
-          height={1125}
-          sizes="100vw"
-          priority
-          className="absolute inset-0 -z-20 h-full w-full object-cover"
-        />
-        <div className="hero-scrim" />
-        <div className="section-inner plan-hero-content">
-          <h1 className="display-title hero-title">
-            Let&apos;s plan your {initialCountry} trip
-          </h1>
-          <p className="hero-subtitle">
-            Share the rough shape and I will help turn it into a private route.
+    <section className="page-section bg-paper">
+      <link
+        rel="stylesheet"
+        href="https://assets.calendly.com/assets/external/widget.css"
+      />
+      <Script
+        src="https://assets.calendly.com/assets/external/widget.js"
+        strategy="lazyOnload"
+      />
+      <div className="section-inner">
+        <div className="plan-page-intro">
+          <p className="eyebrow">Start planning</p>
+          <h1 className="display-title mt-5">Book a free 15-minute call</h1>
+          <p className="mt-6 max-w-[54ch]">
+            Choose a time to talk through the trip, the rough dates, and what
+            would make it feel like yours.
           </p>
         </div>
-      </section>
 
-      <section className="page-section">
-        <div className="section-inner plan-grid">
-          <div>
+        <div
+          className="calendly-inline-widget calendly-embed mt-10"
+          data-url={calendlyUrl}
+        />
+
+        <div className="plan-form-section">
+          <h2 className="section-title">Or send the details first</h2>
+          <div className="plan-form-wrap mt-10">
             <PlanLeadForm initialCountry={initialCountry} />
           </div>
-          <aside className="plan-next-panel" aria-label="What happens next">
-            <h2>What happens next</h2>
-            <ol className="plan-next-list">
-              <li>Free 15-minute call</li>
-              <li>I build the route</li>
-              <li>Nothing is booked until you say go</li>
-            </ol>
-            <div className="plan-hairline" />
-            <h2 className="plan-talk-title">Prefer to talk now?</h2>
-            <div className="mt-4 grid gap-3">
-              <Link href={whatsappHref} className="plan-contact-link">
-                Message on WhatsApp
-              </Link>
-              <Link href={phoneHref} className="plan-contact-link">
-                {phoneLabel}
-              </Link>
-            </div>
-          </aside>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 }

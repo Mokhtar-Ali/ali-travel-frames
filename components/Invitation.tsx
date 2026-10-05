@@ -7,7 +7,7 @@ type InvitationProps = {
 };
 
 export function Invitation({
-  country = "Colombia",
+  country,
   href = "/plan",
 }: InvitationProps) {
   return (
@@ -17,11 +17,11 @@ export function Invitation({
           Bring me the trip you keep imagining
         </h2>
         <p className="mx-auto mt-6 max-w-[48ch]">
-          We will turn the rough idea into a {country} plan with rhythm, taste,
-          and a real point of view.
+          We will turn the rough idea into {country ? `a ${country}` : "a"} plan
+          with rhythm, taste, and a real point of view.
         </p>
         <ButtonLink href={href} className="mt-10">
-          Plan a trip
+          Book a call
         </ButtonLink>
       </div>
     </Reveal>

@@ -1,4 +1,12 @@
-export const reviews = [
+export type Review = {
+  name: string;
+  trip: string;
+  avatar: string;
+  text: string;
+  homepageExcerpt?: string;
+};
+
+export const reviews: Review[] = [
   {
     name: "Marwa Rezq",
     trip: "VIP Colombia Travel Package",
@@ -28,12 +36,14 @@ export const reviews = [
     trip: "Egypt Custom Travel Package",
     avatar: "/reviews/jorge.jpg",
     text: "Being in a foreign country with a language and food unfamiliar to me, Ali's expertise and local knowledge made me feel safe and allowed me to understand what I was eating and where I was going. Ali is incredibly friendly and knowledgeable, and I highly recommend booking your travel with them.",
+    homepageExcerpt: "Being in a foreign country with a language and food unfamiliar to me, Ali's expertise and local knowledge made me feel safe and allowed me to understand what I was eating and where I was going. Ali is incredibly friendly …",
   },
   {
     name: "Josh Wallace",
     trip: "VIP Colombia Travel Package",
     avatar: "/reviews/josh.jpg",
     text: "We had an amazing trip to Santa Marta, Colombia, and we highly recommend Ali Travel Frames to anyone looking for a personalized, enriching travel experience. Ali has a deep knowledge of the region and a genuine passion for sharing it.",
+    homepageExcerpt: "We had an amazing trip to Santa Marta, Colombia … and we highly recommend Ali Travel Frames … for a personalized, enriching travel experience. Ali has a deep knowledge of the region.",
   },
   {
     name: "Juan Valencia",

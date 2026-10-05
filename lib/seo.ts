@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const SITE_NAME = "Ali Travel Frames";
 export const SITE_URL = "https://alitravelframes.com";
 export const SITE_DESCRIPTION =
-  "Private Colombia travel planning for design-minded travelers, couples, and families.";
+  "Private travel planning for Colombia and Egypt";
 export const SITE_PHONE_PLACEHOLDER = "+1 (917) 780-9875";
 
 type BuildMetadataOptions = {

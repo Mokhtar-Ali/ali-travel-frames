@@ -1,8 +1,19 @@
-export const hero = {
-  h1: "Private Colombia trips planned by an American who lives there",
+export const site = {
+  name: "Ali Travel Frames",
+  description: "Private travel planning for Colombia and Egypt",
 };
 
-export const trustStrip = ["Two countries, known first-hand"];
+export const hero = {
+  h1: "VIP travel planning, trusted by 100+ travelers.",
+  sub: "Private journeys shaped around you, with trusted local expertise and personal concierge support from the first conversation to the journey home.",
+};
+
+export const trustStrip = [
+  "US-registered business",
+  "Colombia & Egypt expertise",
+  "Reachable 24/7 while you travel",
+  "Published prices, no quote required",
+];
 
 export const aboutParagraphs = [
   "I am an American travel planner based in Colombia. I built Ali Travel Frames around a simple idea: you should be able to plan with someone who understands what a trip feels like from your side and knows the country from the ground.",

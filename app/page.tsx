@@ -1,68 +1,26 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { Film } from "@/components/Film";
 import { Guide } from "@/components/Guide";
 import { Hero } from "@/components/Hero";
 import { Invitation } from "@/components/Invitation";
 import { InTheirWords } from "@/components/InTheirWords";
+import { PackageCarousel } from "@/components/PackageCarousel";
 import { Reveal } from "@/components/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
-import { packages } from "@/content/packages/index";
-import { aboutParagraphs, trustStrip } from "@/content/site";
-import { formatUsd } from "@/lib/format";
+import { colombiaPackages, egyptPackages } from "@/content/packages";
+import type { Package } from "@/content/types";
 import { buildMetadata } from "@/lib/seo";
 
-const featuredJourneys = packages.slice(0, 6);
-
-const regions = [
-  {
-    name: "Cartagena",
-    slug: "cartagena",
-    image: "/hero/01-cartagena.jpg",
-    chip: "Walled city · Islands",
-    cityMatches: ["Cartagena", "Rosario Islands"],
-  },
-  {
-    name: "Medellín",
-    slug: "medellin",
-    image: "/hero/03-medellin.jpg",
-    chip: "City · Guatapé",
-    cityMatches: ["Medellín", "Guatapé"],
-  },
-  {
-    name: "Coffee Region",
-    slug: "coffee-region",
-    image: "/destinations/coffee-region.jpg",
-    chip: "Farms · Waterfalls",
-    cityMatches: ["Salento", "Filandia", "Cocora Valley", "Pereira"],
-  },
-  {
-    name: "Santa Marta",
-    slug: "santa-marta",
-    image: "/destinations/santa-marta.jpg",
-    chip: "Tayrona · Minca",
-    cityMatches: ["Santa Marta", "Minca", "Tayrona", "Palomino", "La Guajira"],
-  },
-  {
-    name: "San Andrés",
-    slug: "san-andres",
-    image: "/destinations/san-andres.jpg",
-    chip: "Reefs · Beaches",
-    cityMatches: ["San Andrés", "Providencia"],
-  },
+const companyIntroduction = [
+  "At Ali Travel Frames, we bring together VIP travel planning, personal concierge service, and trusted local expertise to shape journeys around you. From private Egypt tours to tailor-made Colombia travel packages, we plan the stays, guides, transfers, and experiences that make each trip feel personal.",
+  "100+ travelers have trusted us with their journeys. We help our clients turn travel ideas into thoughtfully coordinated experiences, with clear communication, personal attention, and support throughout their trip.",
+  "Our concierge and security services put comfort and safety-conscious planning at the heart of your journey. From arrival arrangements to your journey home, we help you navigate unfamiliar places with greater confidence and spend more time enjoying the experience.",
 ];
 
-function countJourneysForRegion(cityMatches: string[]) {
-  return packages.filter((travelPackage) =>
-    travelPackage.cities.some((city) => cityMatches.includes(city)),
-  ).length;
-}
-
 export const metadata: Metadata = buildMetadata({
-  title: "Private Colombia Travel Planning",
-  description:
-    "Tailored Colombia itineraries with boutique hotels, private guides, and calm planning from Ali Travel Frames.",
+  title: "Ali Travel Frames | Private Colombia & Egypt Travel Planning",
+  description: "Private travel planning for Colombia and Egypt",
   path: "/",
 });
 
@@ -70,9 +28,30 @@ export default function Home() {
   return (
     <div className="bg-paper">
       <Hero />
-      <TrustStrip />
-      <Journeys />
-      <Regions />
+      <CountryJourneys
+        country="colombia"
+        eyebrow="Colombia"
+        title="Colombia, planned from Colombia"
+        copy={[
+          "Private routes built around the pace, places, and people that make the country worth crossing.",
+          "Start with a published journey, then shape the hotels, guides, meals, and quiet time around you.",
+        ]}
+        packages={colombiaPackages}
+        linkLabel="All Colombia journeys"
+        href="/colombia"
+      />
+      <CountryJourneys
+        country="egypt"
+        eyebrow="Egypt"
+        title="Egypt, known on the ground"
+        copy={[
+          "Cairo, the Nile, Upper Egypt, and the Red Sea arranged with first-hand judgment.",
+        ]}
+        packages={egyptPackages}
+        linkLabel="All Egypt journeys"
+        href="/egypt"
+        tone="sand"
+      />
       <AliSection />
       <InTheirWords />
       <Film />
@@ -82,109 +61,41 @@ export default function Home() {
   );
 }
 
-function TrustStrip() {
+function CountryJourneys({
+  country,
+  eyebrow,
+  title,
+  copy,
+  packages,
+  linkLabel,
+  href,
+  tone = "paper",
+}: {
+  country: Package["country"];
+  eyebrow: string;
+  title: string;
+  copy: string[];
+  packages: Package[];
+  linkLabel: string;
+  href: string;
+  tone?: "paper" | "sand";
+}) {
   return (
-    <div className="trust-strip">
-      <div className="section-inner">
-        <p>{trustStrip[0]}</p>
-      </div>
-    </div>
-  );
-}
-
-function Journeys() {
-  return (
-    <Reveal id="journeys" className="home-section bg-paper">
-      <div className="section-inner">
-        <p className="eyebrow">Journeys</p>
-        <h2 className="section-title mt-4">Ten journeys</h2>
-        <p className="mt-5 max-w-[54ch]">
-          Start with a proven route, then tune the pace, hotels, guides, and
-          quiet time around how you actually like to travel.
-        </p>
-        <div className="journeys-grid mt-10">
-          {featuredJourneys.map((journey, index) => (
-            <Link
-              key={journey.slug}
-              href={`/packages/${journey.slug}`}
-              className="journey-entry group"
-            >
-              <div className="media-frame journey-image">
-                <Image
-                  src={`/packages/${journey.slug}/hero.jpg`}
-                  alt={`${journey.name} in Colombia`}
-                  width={900}
-                  height={1125}
-                  priority={index === 0}
-                  loading={index === 0 ? undefined : "lazy"}
-                  sizes="(max-width: 680px) 100vw, (max-width: 1000px) 50vw, 33vw"
-                  className="media-scale h-full w-full object-cover"
-                />
-              </div>
-              <div className="journey-copy">
-                <p className="eyebrow">
-                  {journey.nights} nights / {journey.cities.join(", ")}
-                </p>
-                <h3 className="mt-4">{journey.name}</h3>
-                <p className="mt-3 text-[15px] leading-[1.6] text-ink-2">
-                  {journey.teaser}
-                </p>
-                <p className="mt-4 text-[15px] font-medium leading-[1.6] text-ink">
-                  From {formatUsd(journey.priceFrom)} per person
-                </p>
-              </div>
-            </Link>
-          ))}
+    <Reveal className={`home-section country-journeys-section bg-${tone}`}>
+      <div className="section-inner country-journeys-inner">
+        <div className="country-section-intro">
+          <p className="eyebrow">{eyebrow}</p>
+          <h2 className="section-title mt-4">{title}</h2>
+          <div className="country-section-copy mt-6">
+            {copy.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </div>
-        <div className="mt-10 text-center">
-          <ButtonLink href="/packages" variant="quiet">
-            All ten journeys
-          </ButtonLink>
-        </div>
-      </div>
-    </Reveal>
-  );
-}
-
-function Regions() {
-  return (
-    <Reveal className="home-section bg-sand">
-      <div className="section-inner">
-        <p className="eyebrow">Regions</p>
-        <h2 className="section-title mt-4 max-w-[14ch]">
-          Five places to begin
-        </h2>
-        <div className="regions-grid mt-10">
-          {regions.map((region) => {
-            const journeyCount = countJourneysForRegion(region.cityMatches);
-
-            return (
-              <Link
-                key={region.slug}
-                href={`/packages?region=${region.slug}`}
-                className="region-card group"
-              >
-                <Image
-                  src={region.image}
-                  alt={`${region.name} Colombia`}
-                  width={600}
-                  height={800}
-                  loading="lazy"
-                  sizes="(max-width: 520px) 100vw, (max-width: 700px) 50vw, (max-width: 1100px) 33vw, 20vw"
-                  className="media-scale h-full w-full object-cover"
-                />
-                <div className="region-scrim" />
-                <div className="region-content">
-                  <p className="region-chip">{region.chip}</p>
-                  <h3 className="region-title">{region.name}</h3>
-                  <p className="region-count">
-                    {journeyCount} {journeyCount === 1 ? "journey" : "journeys"}
-                  </p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        <PackageCarousel country={country} packages={packages} />
+        <ButtonLink href={href} variant="quiet" className="country-journeys-link">
+          {linkLabel}
+        </ButtonLink>
       </div>
     </Reveal>
   );
@@ -192,32 +103,34 @@ function Regions() {
 
 function AliSection() {
   return (
-    <Reveal className="home-section bg-paper">
-      <div className="section-inner ali-grid">
-        <div className="media-frame aspect-[4/5] bg-sand">
-          {/* TODO: Add Ali's portrait at /public/brand/ali.jpg. */}
-          <Image
-            src="/hero/05-santa-fe.jpg"
-            alt="Ali in Colombia"
-            width={900}
-            height={1125}
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-        </div>
-        <div>
-          <p className="eyebrow">Who plans your trip</p>
-          <h2 className="section-title balanced-title mt-4 max-w-[14ch]">
-            Planned by someone who lives it
-          </h2>
-          <div className="mt-8 grid gap-6">
-            {aboutParagraphs.slice(0, 3).map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
+    <Reveal className="home-section ali-section bg-paper">
+      <div className="section-inner">
+        <p className="eyebrow">Who plans your trip?</p>
+        <h2 className="section-title mt-4">The team behind your journey</h2>
+        <div className="ali-grid mt-10">
+          <div className="media-frame ali-image bg-sand">
+            <Image
+              src="https://pub-ec6b76c0eef842d1bd7d65492c044988.r2.dev/Ali%20Travel%20Frames/Me-in-Colombia.jpg"
+              alt="A group in colorful dress outside a historic building"
+              width={1366}
+              height={2048}
+              sizes="(max-width: 899px) calc(100vw - 48px), 430px"
+              className="h-full w-full object-cover"
+            />
           </div>
-          <ButtonLink href="/about" variant="quiet" className="mt-10">
-            About Ali
-          </ButtonLink>
+          <div>
+            <div className="ali-company-copy">
+              {companyIntroduction.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+            <div className="about-actions mt-10">
+              <ButtonLink href="/plan">Plan my trip</ButtonLink>
+              <ButtonLink href="/about" variant="quiet">
+                About Ali
+              </ButtonLink>
+            </div>
+          </div>
         </div>
       </div>
     </Reveal>

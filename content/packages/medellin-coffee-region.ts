@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const medellinCoffeeRegion: Package = {
   slug: "medellin-coffee-region",
+  country: "colombia",
   name: "Medellín & the Coffee Region",
   title: "Medellín & the Coffee Region: 8 Nights of City, Lake & Coffee Country",
   metaDescription: "Eight nights combining Medellín, Guatapé and Colombia's coffee country — private guides, working farms, the Cocora Valley wax palms. From $4,600 per person.",

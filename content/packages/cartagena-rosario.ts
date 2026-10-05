@@ -2,6 +2,7 @@ import type { Package } from '../types'
 
 export const cartagenaRosario: Package = {
   slug: "cartagena-rosario",
+  country: "colombia",
   name: "Cartagena & the Rosario Islands",
   title: "Cartagena & Rosario Islands: 5 Nights of Walled City & Caribbean",
   metaDescription: "Five nights in Cartagena's walled city plus the Rosario Islands — private guides, Getsemaní, a sunset catamaran and a full island day. From $3,400 per person.",

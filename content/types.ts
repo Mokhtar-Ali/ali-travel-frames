@@ -12,6 +12,7 @@ export type PackageHotel = {
 
 export type Package = {
   slug: string;
+  country: "colombia" | "egypt";
   name: string;
   title: string;
   metaDescription: string;
