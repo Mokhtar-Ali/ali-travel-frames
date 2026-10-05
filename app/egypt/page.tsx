@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { CountryHero } from "@/components/CountryHero";
 import { CountryReviews } from "@/components/CountryReviews";
 import { Invitation } from "@/components/Invitation";
 import { PackageGrid } from "@/components/PackageGrid";
 import { egyptPackages } from "@/content/packages";
 import { buildMetadata } from "@/lib/seo";
+import { publicAssetExists } from "@/lib/public-assets";
 
 const experiences = [
   {
@@ -39,14 +40,13 @@ export const metadata: Metadata = buildMetadata({
   description:
     "Private Egypt travel planning from Cairo and the Nile to the Red Sea.",
   path: "/egypt",
-  image: "/egypt/hero-1.jpg",
+  image: publicAssetExists("/egypt/hero-1.jpg") ? "/egypt/hero-1.jpg" : null,
   imageAlt: "Egypt",
 });
 
 export default function EgyptPage() {
   return (
     <div className="bg-paper">
-      {/* TODO: Add the Egypt hero images under /public/egypt/. */}
       <CountryHero
         title="Egypt"
         subtitle="Cairo, the Nile, Upper Egypt, and the Red Sea planned with first-hand judgment."
@@ -76,13 +76,16 @@ export default function EgyptPage() {
         <div className="section-inner">
           <p className="eyebrow">Four ways into Egypt</p>
           <h2 className="section-title mt-4">Where the trip can take shape</h2>
-          {/* TODO: Add cairo.jpg, luxor.jpg, nile.jpg, and red-sea.jpg under /public/egypt/. */}
           <div className="egypt-experience-grid mt-10">
             {experiences.map((experience) => (
               <article key={experience.name} className="egypt-experience">
                 <div className="egypt-experience-image">
-                  <Image
-                    src={experience.image}
+                  <ImageWithFallback
+                    src={
+                      publicAssetExists(experience.image)
+                        ? experience.image
+                        : undefined
+                    }
                     alt={experience.name}
                     width={1200}
                     height={800}

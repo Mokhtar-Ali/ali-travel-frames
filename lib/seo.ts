@@ -10,7 +10,7 @@ type BuildMetadataOptions = {
   title?: string;
   description?: string;
   path?: string;
-  image?: string;
+  image?: string | null;
   imageAlt?: string;
   noIndex?: boolean;
   titleTemplate?: boolean;
@@ -50,20 +50,22 @@ export function buildMetadata({
       siteName: SITE_NAME,
       locale: "en_US",
       type: "website",
-      images: [
-        {
-          url: image,
-          width: 1600,
-          height: 1000,
-          alt: imageAlt,
-        },
-      ],
+      images: image
+        ? [
+            {
+              url: image,
+              width: 1600,
+              height: 1000,
+              alt: imageAlt,
+            },
+          ]
+        : undefined,
     },
     twitter: {
-      card: "summary_large_image",
+      card: image ? "summary_large_image" : "summary",
       title,
       description,
-      images: [image],
+      images: image ? [image] : undefined,
     },
     robots: noIndex
       ? {

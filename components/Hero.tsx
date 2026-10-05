@@ -1,23 +1,9 @@
 "use client";
 
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { ButtonLink } from "@/components/ui/Button";
-import { hero, trustStrip } from "@/content/site";
-
-const slides = [
-  { place: "Cartagena", country: "Colombia", image: "/hero/01-cartagena.jpg" },
-  { place: "Rosario Islands", country: "Colombia", image: "/hero/02-rosario.jpg" },
-  { place: "Medellín", country: "Colombia", image: "/hero/03-medellin.jpg" },
-  { place: "Guatapé", country: "Colombia", image: "/hero/04-guatape.jpg" },
-  { place: "Santa Fe de Antioquia", country: "Colombia", image: "/hero/05-santa-fe.jpg" },
-  { place: "Santa Marta", country: "Colombia", image: "/hero/06-santa-marta.jpg" },
-  // TODO: Add the four Egypt hero images under /public/egypt/.
-  { place: "Cairo", country: "Egypt", image: "/egypt/hero-1.jpg" },
-  { place: "Giza", country: "Egypt", image: "/egypt/hero-2.jpg" },
-  { place: "Luxor", country: "Egypt", image: "/egypt/hero-3.jpg" },
-  { place: "Aswan", country: "Egypt", image: "/egypt/hero-4.jpg" },
-];
+import { hero, heroSlides as slides, trustStrip } from "@/content/site";
 
 const mediaQuery = "(prefers-reduced-motion: reduce)";
 const crossfadeDurationMs = 450;
@@ -59,7 +45,7 @@ function usePrefersReducedMotion() {
   );
 }
 
-export function Hero() {
+export function Hero({ unavailableImages }: { unavailableImages: string[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
@@ -159,6 +145,9 @@ export function Hero() {
     }
 
     const nextSlide = slides[(activeIndex + 1) % slides.length];
+    if (unavailableImages.includes(nextSlide.image)) {
+      return;
+    }
     const idleId = idleWindow.requestIdleCallback(() => {
       const image = new window.Image();
       image.src = nextSlide.image;
@@ -167,7 +156,7 @@ export function Hero() {
     return () => {
       idleWindow.cancelIdleCallback?.(idleId);
     };
-  }, [activeIndex, prefersReducedMotion]);
+  }, [activeIndex, prefersReducedMotion, unavailableImages]);
 
   return (
     <>
@@ -189,6 +178,7 @@ export function Hero() {
           <HeroImage
             key={`previous-${previousSlide.image}`}
             slide={previousSlide}
+            available={!unavailableImages.includes(previousSlide.image)}
             alt=""
             className={`hero-slide ${isTransitioning ? "" : "hero-slide-active"}`}
             isFirstSlide={previousIndex === 0}
@@ -198,6 +188,7 @@ export function Hero() {
         <HeroImage
           key={`active-${currentSlide.image}`}
           slide={currentSlide}
+          available={!unavailableImages.includes(currentSlide.image)}
           alt={`${currentSlide.place}, ${currentSlide.country}`}
           className={`hero-slide ${
             isTransitioning || previousIndex === activeIndex
@@ -234,27 +225,31 @@ export function Hero() {
 
 function HeroImage({
   slide,
+  available,
   alt,
   className,
   isFirstSlide,
   "aria-hidden": ariaHidden,
 }: {
   slide: HeroSlide;
+  available: boolean;
   alt: string;
   className: string;
   isFirstSlide: boolean;
   "aria-hidden"?: boolean;
 }) {
   return (
-    <Image
-      src={slide.image}
+    <ImageWithFallback
+      src={available ? slide.image : undefined}
       alt={alt}
       width={2400}
       height={1500}
       sizes="100vw"
-      priority={isFirstSlide}
+      preload={isFirstSlide}
       loading={isFirstSlide ? undefined : "lazy"}
-      className={className}
+      frameClassName={className}
+      className="h-full w-full object-cover"
+      fallbackLabel={null}
       aria-hidden={ariaHidden}
     />
   );

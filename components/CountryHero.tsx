@@ -1,9 +1,10 @@
-import Image from "next/image";
+import { ImageWithFallback } from "@/components/ImageWithFallback";
+import { publicAssetExists } from "@/lib/public-assets";
 
 type CountryHeroProps = {
   title: string;
   subtitle: string;
-  image: string;
+  image?: string;
   imageAlt: string;
 };
 
@@ -15,14 +16,15 @@ export function CountryHero({
 }: CountryHeroProps) {
   return (
     <section className="country-hero">
-      <Image
-        src={image}
+      <ImageWithFallback
+        src={publicAssetExists(image) ? image : undefined}
         alt={imageAlt}
         width={2400}
         height={1500}
         sizes="100vw"
-        priority
-        className="country-hero-image"
+        preload
+        frameClassName="country-hero-image"
+        className="h-full w-full object-cover"
       />
       <div className="hero-scrim" />
       <div className="section-inner country-hero-content">

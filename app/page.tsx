@@ -10,6 +10,8 @@ import { Reveal } from "@/components/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { colombiaPackages, egyptPackages } from "@/content/packages";
 import type { Package } from "@/content/types";
+import { heroSlides } from "@/content/site";
+import { publicAssetExists } from "@/lib/public-assets";
 import { buildMetadata } from "@/lib/seo";
 
 const companyIntroduction = [
@@ -27,7 +29,11 @@ export const metadata: Metadata = buildMetadata({
 export default function Home() {
   return (
     <div className="bg-paper">
-      <Hero />
+      <Hero
+        unavailableImages={heroSlides
+          .filter((slide) => !publicAssetExists(slide.image))
+          .map((slide) => slide.image)}
+      />
       <CountryJourneys
         country="colombia"
         eyebrow="Colombia"

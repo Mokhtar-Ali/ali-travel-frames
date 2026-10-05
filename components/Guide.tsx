@@ -4,6 +4,8 @@ import Image from "next/image";
 import { type FormEvent, useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/ui/Button";
+import { whatsappContactUrl } from "@/content/site";
+import { readLeadResponse } from "@/lib/lead-response";
 
 const guideImages = [
   { city: "Cartagena", src: "/guide/cartagena.jpg" },
@@ -21,9 +23,11 @@ const guideItems = [
 export function Guide() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [message, setMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (isSubmitting) return;
     setIsSubmitting(true);
     setMessage("");
 
@@ -38,21 +42,26 @@ export function Guide() {
         },
         body: JSON.stringify({ email }),
       });
-      const result = (await response.json()) as { ok?: boolean };
+      const result = await readLeadResponse(response);
 
+      setIsSuccess(result.ok);
       setMessage(
-        response.ok && result.ok
-          ? "Done. The Colombia field guide is on its way."
-          : "Please enter a valid email.",
+        result.ok
+          ? `Your guide request has been ${result.status}. ${
+              result.notificationFailed
+                ? "The notification could not be sent. Please do not submit again; contact Ali Travel Frames on WhatsApp."
+                : "Email delivery has not been confirmed."
+            }`
+          : result.error,
       );
     } catch {
-      setMessage("Please try again in a moment.");
+      setMessage(
+        "We could not confirm your submission. Please contact Ali Travel Frames on WhatsApp before trying again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   }
-
-  const isSuccess = message.startsWith("Done.");
 
   return (
     <Reveal id="guide" className="home-section guide-section">
@@ -95,7 +104,11 @@ export function Guide() {
             </p>
           ) : (
             <>
-              <form className="guide-form" onSubmit={handleSubmit}>
+              <form
+                className="guide-form"
+                onSubmit={handleSubmit}
+                aria-busy={isSubmitting}
+              >
                 <label className="sr-only" htmlFor="guide-email">
                   Email
                 </label>
@@ -107,6 +120,7 @@ export function Guide() {
                   autoComplete="email"
                   placeholder="you@email.com"
                   required
+                  disabled={isSubmitting}
                 />
                 <Button type="submit" disabled={isSubmitting}>
                   {isSubmitting ? "Sending" : "Send it"}
@@ -114,8 +128,12 @@ export function Guide() {
               </form>
               <p className="guide-note">One email, one PDF. No sequence.</p>
               {message ? (
-                <p className="guide-status mt-4" aria-live="polite">
+                <p className="guide-status mt-4" role="alert">
                   {message}
+                  {" "}
+                  <a href={whatsappContactUrl} className="underline">
+                    Contact us on WhatsApp
+                  </a>
                 </p>
               ) : null}
             </>

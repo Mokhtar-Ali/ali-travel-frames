@@ -1,25 +1,10 @@
-type LeadPayload = {
-  source?: unknown;
-  country?: unknown;
-  name?: unknown;
-  email?: unknown;
-  phone?: unknown;
-  travelWindow?: unknown;
-  travellerCount?: unknown;
-  interests?: unknown;
-  budgetPerPerson?: unknown;
-  notes?: unknown;
-};
-
-function isValidEmail(email: string) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+import { validateLead } from "@/lib/lead";
 
 export async function POST(request: Request) {
-  let payload: LeadPayload;
+  let payload: unknown;
 
   try {
-    payload = (await request.json()) as LeadPayload;
+    payload = await request.json();
   } catch {
     return Response.json(
       { ok: false, error: "Invalid JSON payload." },
@@ -27,53 +12,15 @@ export async function POST(request: Request) {
     );
   }
 
-  const source = typeof payload.source === "string" ? payload.source : "guide";
-  const name = typeof payload.name === "string" ? payload.name.trim() : "";
-  const email = typeof payload.email === "string" ? payload.email.trim() : "";
-  const requiresName = source === "plan";
-
-  if (requiresName && name.length < 2) {
-    return Response.json(
-      { ok: false, error: "Name is required." },
-      { status: 400 },
-    );
+  const validation = validateLead(payload);
+  if (!validation.ok) {
+    return Response.json(validation, { status: 400 });
   }
 
-  if (!isValidEmail(email)) {
-    return Response.json(
-      { ok: false, error: "A valid email is required." },
-      { status: 400 },
-    );
-  }
-
-  const sanitizedLead = {
-    source,
-    country:
-      typeof payload.country === "string" ? payload.country.trim() : "",
-    name,
-    email,
-    phone: typeof payload.phone === "string" ? payload.phone.trim() : "",
-    travelWindow:
-      typeof payload.travelWindow === "string"
-        ? payload.travelWindow.trim()
-        : "",
-    travellerCount:
-      typeof payload.travellerCount === "number" ? payload.travellerCount : null,
-    interests: Array.isArray(payload.interests)
-      ? payload.interests.filter((interest) => typeof interest === "string")
-      : [],
-    budgetPerPerson:
-      typeof payload.budgetPerPerson === "string"
-        ? payload.budgetPerPerson
-        : "",
-    notes: typeof payload.notes === "string" ? payload.notes.trim() : "",
-  };
-
-  void sanitizedLead;
-
-  // TODO: Add the Airtable lead write and Resend guide delivery email here.
-  // Keep service credentials in environment variables; do not commit secrets.
-  // Never log lead payloads in production.
-
-  return Response.json({ ok: true });
+  // No approved persistence or delivery integration is implemented.
+  // Validation alone must never acknowledge an inquiry as accepted or saved.
+  return Response.json(
+    { ok: false, code: "LEAD_SERVICE_UNAVAILABLE" },
+    { status: 503 },
+  );
 }
